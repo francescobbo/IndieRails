@@ -3,10 +3,11 @@
 
 p.h-card
   = image_tag '/profile1.jpg', alt: '', class: 'u-photo'
-  = link_to 'Francesco Boffa', root_url, class: 'p-name u-url'
+  = link_to 'Francesco Boffa', root_url, class: 'p-name u-url', rel: 'me'
   = mail_to 'fra.boffa@gmail.com', 'fra.boffa@gmail.com', class: 'u-email'
   .p-locality London
   .p-country-name United Kingdom
+  .p-note Awesome Rails developer!
 
 ul
   li = mail_to 'fra.boffa@gmail.com', 'fra.boffa@gmail.com', rel: 'me'
