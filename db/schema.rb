@@ -14,8 +14,9 @@ ActiveRecord::Schema.define(version: 20170611152612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pgcrypto"
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "kind", null: false
     t.text "title"
     t.text "body"
