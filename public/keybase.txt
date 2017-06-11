@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/fraboffa
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://francescoboffa.com
+  * I am fraboffa (https://keybase.io/fraboffa) on keybase.
+  * I have a public key with fingerprint 8935 FC49 D2A7 EB52 9024  246C 84C8 03B4 949B 9298
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01209b2290f3f64041032c7e7f9c81734ae02ff797ee29074bc7ffe20004619139780a",
+            "fingerprint": "8935fc49d2a7eb529024246c84c803b4949b9298",
+            "host": "keybase.io",
+            "key_id": "84c803b4949b9298",
+            "kid": "01013fb86092187ed6beed6ae3ad5532f7a39f49f69efa08b7545eeaa2df04066b190a",
+            "uid": "5620c465dbf7c72e4b77dd8eb9e91919",
+            "username": "fraboffa"
+        },
+        "service": {
+            "hostname": "francescoboffa.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1497212224,
+    "expire_in": 157680000,
+    "prev": "895646d0cc4b59154137bc366d1698f9fa8cee2cf9a4f8c086c779d056015578",
+    "seqno": 16,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.71
+Comment: https://keybase.io/crypto
+
+yMNzAnicbZJ9TJVVHMcvIoUYiixKUhNuRUh4ed7Pc1iSFF6UgQQL5CW8e17OgccL
+97ncewHFSBGMTQdzAoKCkTWVAMHXyIELSBnMqXDJNVCHq1ECScTItRnensty/dM/
+5+yc8/l+z/f8fue6r6fOx6N8wPNyTcPReo+bvZ8X6NI3nd68Vy+q8h595F69GS1O
+KFdGdofJrMj6SD1BUgQUKQoSmMYcQzAkQVMSQABDiScBzQiIoDAGECCkQYARJYAx
+ogiCYDgSkjQEPCHow/VYsWQjm9WmWByaLQ9pFksMlCkBIJHVlBRDMZzEMxJP0CID
+GShCCvKaMEe1uxVaOFGwI4OianvawrQY73/457kJksYizxGQInmAZE5E2iAgWpBZ
+lqYwEGiIGYg5iLBA8CJgGRYhQaBkTDAEx4kkXMxdsGjHchQhMRwrixhIgEKMCIAs
+80iECGqvhG7QjmwWIQ9pNLYJooqxoC8J12u7hYqE3IV1v+Q/wiIhu6QucgZJzdMc
+rDbVoUpqrnae43BY7ZFuvWOP1S0oQqLpXyuTqFhkrZqaohDZ7Ipq0UeSGik5FLc3
+yUBAkRRFMeF6tNuq2JBJcRMs4HitK4T7HlS42AOWYziZkCRGZCHJMiQNRInmOJnk
+II8hFnhJa6qEocBgXiJ4TgIAygTLESTLAnet7SjfomrenJZTyNY87Uq2RXAU2JC+
+pK/346U6Dx/dC15L3N9M57PM7/nn62pY6SpatjmzqcypVJRsP3EsLHfpuybj9dgv
+Kl3Y2h0zvCvrnSfmR+lju+ur1q0LCBxpPvOe68bDgLXHO07ce2W4bGqsou37ioOT
+RTdakkuPLR8BW10XyodTo+dy7iZs+fUayuyP+XRV0qmDl+i8acLe6J9/gRssGm89
+fLV9MEhIncgwmtMyb1vnnh1ANQ5nqJM/2bYj9y9zbcDb3SHDVvPA7GjVvZTIffdj
+k4L9N8xHf/f11pQtd/0rn1TC+LgP7kQxdpixZMZxersRRn27oqfr9flb3lMTf+6s
+3lW6v/KbI2emR9FI3Ifxo3N88n4DBwo6QhrW9vLjUtZg1s5TaxzFPU3Hnzp/q31w
+IKFNCXCt8EOBmzaO7dt4uCslb6E3lawxziRKvutD2r13fBX7MJ27fZliX21pPXn+
+0PyEodk81wkNJHf1afNAWIYjtAxSVPAvIUXjxh+fla+qt8y5PGcniXKls8rrUXz1
+tk+iC+77CtNXQoPAD3WNMatdxWc3eA2krf4oQdeTedNZ/PhO0svDy4P/CDVduRj2
+U0Tixd+vWYWX+hoNxqOPC7PUW95vzByZ3TbkCorr0f18tmPoy3Mvpl3qaUw2inX9
+62v/XnC2pnYOTLV1rwmMwP2l+WA0pu7916LaUcSDcr++Q/7V4WXnstXWqYXx8aH+
+t3oSc9M/K2uaWXn+zZbsyX8AaS3FIw==
+=tLao
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/fraboffa
+
+==================================================================
