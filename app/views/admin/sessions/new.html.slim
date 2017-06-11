@@ -1,0 +1,7 @@
+p Insert the admin password
+
+= flash[:signin]
+
+= form_tag do
+  = password_field_tag :password
+  = submit_tag 'Sign in'
