@@ -10,4 +10,24 @@ describe "posts/index.html.slim" do
 
     expect(email).to_not be_nil
   end
+
+  it 'provides facebook link with rel="me" attribute' do
+    render
+
+    doc = Nokogiri::HTML(rendered)
+    all_rel_me = doc.css('a[rel="me"]')
+    facebook = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/www.facebook.com\// }
+
+    expect(facebook).to_not be_nil
+  end
+
+  it 'provides twitter link with rel="me" attribute' do
+    render
+
+    doc = Nokogiri::HTML(rendered)
+    all_rel_me = doc.css('a[rel="me"]')
+    twitter = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/twitter.com\// }
+
+    expect(twitter).to_not be_nil
+  end
 end
