@@ -1,0 +1,3 @@
+# IndieRails
+
+Just Selfdogfooding.
