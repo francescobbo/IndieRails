@@ -27,5 +27,10 @@ module IndieRails
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    if Rails.env.production?
+      config.force_ssl = true
+      config.ssl_options = { redirect: false }
+    end
   end
 end
