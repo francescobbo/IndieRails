@@ -4,9 +4,8 @@ class Webmention
   class UnexpectedResponse < StandardError; end
 
   def deliver(source, target)
-    endpoint = discover(target)
+    uri = discover(target)
 
-    uri = URI.parse(endpoint)
     request = Net::HTTP::Post.new(uri.request_uri, 'User-Agent' => user_agent)
     request.set_form_data(source: source, target: target)
     client(uri).request(request)
