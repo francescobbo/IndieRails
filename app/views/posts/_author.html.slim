@@ -4,11 +4,28 @@ section.h-card.author class="#{defined?(class_name) ? class_name : nil}"
   
   .author__meta
     => link_to 'Francesco Boffa', root_url, class: 'author__name p-name u-url', rel: 'me'
-    | (
-    = mail_to 'fra.boffa@gmail.com', 'fra.boffa@gmail.com', class: 'u-email'
-    | )
-    .p-note Awesome Rails developer!
+    p.p-note Awesome Rails developer!
 
-    div
+    p
       span.p-locality> London
       span.p-country-name United Kingdom
+
+    ul.author__me-links
+      li
+        = mail_to 'fra.boffa@gmail.com', title: 'Email', rel: 'me', class: 'author__me-link u-email'
+          .fa.fa-envelope
+      li
+        = link_to 'https://twitter.com/frboffa', title: 'Twitter', rel: 'me', class: 'author__me-link'
+          .fa.fa-twitter
+      li
+        = link_to 'https://github.com/aomega08', title: 'GitHub', rel: 'me', class: 'author__me-link'
+          .fa.fa-github
+      li
+        = link_to 'https://www.linkedin.com/in/francescoboffa/', title: 'LinkedIn', rel: 'me', class: 'author__me-link'
+          .fa.fa-linkedin
+      li
+        = link_to 'https://www.facebook.com/fr.boffa', title: 'Facebook', rel: 'me', class: 'author__me-link'
+          .fa.fa-facebook
+      li
+        = link_to 'https://keybase.io/fraboffa', title: 'Keybase', rel: 'me', class: 'author__me-link'
+          .fa.fa-key
