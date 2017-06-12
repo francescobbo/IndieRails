@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20170611152612) do
 
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "kind", null: false
+    t.string "slug"
+    t.boolean "deleted", default: false, null: false
     t.text "title"
     t.text "body"
     t.text "rendered_body"
