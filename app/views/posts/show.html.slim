@@ -7,3 +7,5 @@ article.h-entry
   = link_to url_for(post), class: 'u-url'
     | Published
     time.dt-published =< post.created_at.iso8601
+
+  = render 'author', class_name: 'p-author'
