@@ -1,4 +1,3 @@
-- Post.all.order(created_at: :desc).each do |post|
-  = post.body
+= render collection: Post.all.order(created_at: :desc), partial: 'preview', as: :post
 
 = render 'author'
