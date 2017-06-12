@@ -92,4 +92,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.read_encrypted_secrets = true
+
+  config.action_controller.default_url_options = {
+    host: 'francescoboffa.com',
+    protocol: 'https'
+  }
 end
+
+Rails.application.routes.default_url_options = {
+  host: 'francescoboffa.com',
+  protocol: 'https'
+}
