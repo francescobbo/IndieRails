@@ -6,6 +6,9 @@ bundler_args: --jobs=2
 
 cache: bundler
 
+env:
+  - DATABASE_URL=postgres://postgres:@localhost:5432/iw_test
+
 script:
   - bundle exec rake db:setup
   - bundle exec rake spec
