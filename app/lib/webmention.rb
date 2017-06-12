@@ -25,16 +25,12 @@ class Webmention
 
   def discover_from_page(page)
     endpoint = endpoint_from_headers(page)
-    return endpoint if endpoint
 
+    return endpoint if endpoint
     return unless page.body
 
     document = Nokogiri::HTML(page.body)
-
-    endpoint = document.css('link[rel~="webmention"]').first.try(:[], :href)
-    return endpoint if endpoint
-
-    document.css('a[rel~="webmention"]').first.try(:[], :href)
+    document.css('link[rel~="webmention"], a[rel~="webmention"]').first.try(:[], :href)
   end
 
   def fetch(url, method = :get, redirect_limit: 10)
