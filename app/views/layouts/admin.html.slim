@@ -2,6 +2,7 @@ doctype html
 html
   head
     title IndieRails
+    meta name='viewport' content='width=device-width,minimum-scale=1,initial-scale=1'
     
     = csrf_meta_tags
     = stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,5 +11,7 @@ html
     link rel="pgpkey" href="/pgpkey.pub"
   
   body
-    = button_to 'Sign out', admin_signout_path, method: :delete
-    = yield
+    .container
+      = link_to 'Sign out', admin_signout_path, method: :delete, class: 'admin__signout'
+      = link_to 'All posts', admin_posts_path
+      = yield

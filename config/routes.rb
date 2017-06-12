@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     post '/signin', to: 'sessions#create'
     delete '/signout', to: 'sessions#delete'
 
-    resources :posts
+    resources :posts do
+      post '/undestroy', on: :member, action: :undestroy
+    end
   end
 
   resources :posts, path: '/', only: :show

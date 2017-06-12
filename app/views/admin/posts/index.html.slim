@@ -1,0 +1,13 @@
+table
+  - posts.each do |post|
+    tr
+      td
+        = post.title
+      td
+        = truncate(post.body)
+      td
+        = link_to 'Edit', [:edit, :admin, post]
+        - if post.deleted?
+          = button_to 'Undelete', ['undestroy', :admin, post], method: :post
+        - else
+          = button_to 'Delete', [:admin, post], method: :delete

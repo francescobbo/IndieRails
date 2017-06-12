@@ -1,0 +1,15 @@
+= form_with model: [:admin, post] do |f|
+  .admin-field
+    = f.label :kind
+    = f.select :kind, Post.kinds.keys.map { |kind| [kind.titleize, kind] }
+  
+  .admin-field
+    = f.label :title
+    = f.text_field :title
+  
+  .admin-field
+    = f.label :body
+    = f.text_area :body, rows: 15
+  
+  .admin-field
+    = f.submit

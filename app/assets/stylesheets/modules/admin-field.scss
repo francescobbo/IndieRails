@@ -1,5 +1,30 @@
 .admin-field {
   & > label {
     display: block;
+    font-weight: bold;
+    margin: 8px 0;
+  }
+
+  input, select, textarea {
+    margin-bottom: 16px;
+    resize: vertical;
+
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  input[type=text], select, textarea {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  input[type=submit] {
+    background: #2196f3;
+    color: white;
+    text-decoration: uppercase;
+    border: none;
+    border-radius: 2px;
+    line-height: 32px;
   }
 }
