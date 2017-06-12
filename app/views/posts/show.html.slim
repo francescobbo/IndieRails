@@ -1,1 +1,9 @@
-== post.rendered_body
+article.h-entry
+  = if post.title
+    h1.p-name = post.title
+
+  .e-content class="#{'p-name' unless post.title}" == post.rendered_body
+
+  = link_to url_for(post), class: 'u-url'
+    | Published
+    time.dt-published =< post.created_at.iso8601
