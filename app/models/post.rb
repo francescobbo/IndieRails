@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   def body=(value)
     renderer = Redcarpet::Render::HTML.new({})
-    markdown = Redcarpet::Markdown.new(renderer)
+    markdown = Redcarpet::Markdown.new(renderer, autolink: true, fenced_code_blocks: true)
 
     self[:rendered_body] = markdown.render(value)
     self[:body] = value
