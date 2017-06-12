@@ -1,0 +1,40 @@
+.author {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 1.6em 0;
+  padding: 30px;
+  border: 1px solid #f0f4f7;
+  background: #f4f8fb;
+  border-radius: 5px;
+
+  color: #242628;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__img {
+    flex: 0 0 80px;
+    border-radius: 100%;
+
+    & > img {
+      width: 80px;
+      height: 80px;
+      border: 5px solid #fff;
+    }
+  }
+
+  &__meta {
+    flex: 0 1 auto;
+    margin-left: 20px;
+  }
+
+  &__name {
+    margin-top: 0.25rem;
+    font-size: 1.8rem;
+    color: inherit;
+  }
+}

@@ -1,5 +1,11 @@
 @import 'fonts';
+@import 'normalize';
+@import 'modules/*';
 
 body {
-  font-family: Merryweather;
+  font-family: sans-serif;
+}
+
+a {
+  color: #369;
 }
