@@ -30,7 +30,8 @@ class Webmention
     return unless page.body
 
     document = Nokogiri::HTML(page.body)
-    document.css('link[rel~="webmention"], a[rel~="webmention"]').first.try(:[], :href)
+    attribute_selector = '[rel~="webmention"][href]'
+    document.css("link#{attribute_selector}, a#{attribute_selector}").first.try(:[], :href)
   end
 
   def fetch(url, method = :get, redirect_limit: 10)
