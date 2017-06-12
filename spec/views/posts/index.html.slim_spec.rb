@@ -40,4 +40,14 @@ describe "posts/index.html.slim" do
 
     expect(github).to_not be_nil
   end
+
+  it 'provides keybase link with rel="me" attribute' do
+    render
+
+    doc = Nokogiri::HTML(rendered)
+    all_rel_me = doc.css('a[rel="me"]')
+    keybase = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/keybase.io\// }
+
+    expect(keybase).to_not be_nil
+  end
 end
