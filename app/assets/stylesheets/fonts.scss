@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'Roboto Slab';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Roboto Slab Regular'),
+		local('RobotoSlab-Regular'),
+		font-url('Roboto_Slab_400.eot?#iefix') format('embedded-opentype'),
+		font-url('Roboto_Slab_400.woff') format('woff'),
+		font-url('Roboto_Slab_400.woff2') format('woff2'),
+		font-url('Roboto_Slab_400.svg#RobotoSlab') format('svg'),
+		font-url('Roboto_Slab_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Merriweather'),
+		local('Merriweather-Regular'),
+		font-url('Merriweather_400.eot?#iefix') format('embedded-opentype'),
+		font-url('Merriweather_400.woff') format('woff'),
+		font-url('Merriweather_400.woff2') format('woff2'),
+		font-url('Merriweather_400.svg#Merriweather') format('svg'),
+		font-url('Merriweather_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		local('Merriweather Italic'),
+		local('Merriweather-Italic'),
+		font-url('Merriweather_400italic.eot?#iefix') format('embedded-opentype'),
+		font-url('Merriweather_400italic.woff') format('woff'),
+		font-url('Merriweather_400italic.woff2') format('woff2'),
+		font-url('Merriweather_400italic.svg#Merriweather') format('svg'),
+		font-url('Merriweather_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('Merriweather Bold'),
+		local('Merriweather-Bold'),
+		font-url('Merriweather_700.eot?#iefix') format('embedded-opentype'),
+		font-url('Merriweather_700.woff') format('woff'),
+		font-url('Merriweather_700.woff2') format('woff2'),
+		font-url('Merriweather_700.svg#Merriweather') format('svg'),
+		font-url('Merriweather_700.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		local('Merriweather Bold Italic'),
+		local('Merriweather-BoldItalic'),
+		font-url('Merriweather_700italic.eot?#iefix') format('embedded-opentype'),
+		font-url('Merriweather_700italic.woff') format('woff'),
+		font-url('Merriweather_700italic.woff2') format('woff2'),
+		font-url('Merriweather_700italic.svg#Merriweather') format('svg'),
+		font-url('Merriweather_700italic.ttf') format('truetype');
+}
