@@ -18,7 +18,7 @@ module Admin
     end
 
     def create
-      post = Post.new(params.require(:post).permit(:kind, :body))
+      post = Post.new(params.require(:post).permit(:kind, :title, :body))
 
       if post.save
         redirect_to [:admin, post]
