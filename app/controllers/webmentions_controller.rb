@@ -6,19 +6,13 @@ class WebmentionsController < ApplicationController
                                                   target: params[:target],
                                                   outbound: false)
 
-    if webmention.new_record?
-      webmention.status = :created
-      webmention.outbound = false
+    webmention.status = :created if webmention.new_record?
 
-      if webmention.save
-        response['Location'] = webmention_url(webmention)
-        head :created
-      else
-        render plain: 'Unacceptable webmention source or target', status: :bad_request
-      end
-    else
+    if !webmention.new_record? || webmention.save
       response['Location'] = webmention_url(webmention)
       head :created
+    else
+      render plain: 'Unacceptable webmention source or target', status: :bad_request
     end
   end
 
