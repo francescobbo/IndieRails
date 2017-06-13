@@ -1,6 +1,6 @@
 require 'net/http'
 
-class Webmention
+class WebmentionClient
   class UnexpectedResponse < StandardError; end
 
   def deliver(source, target)

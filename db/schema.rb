@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611152612) do
+ActiveRecord::Schema.define(version: 20170613102512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20170611152612) do
     t.text "rendered_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "webmentions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "outbound", null: false
+    t.text "source", null: false
+    t.text "target", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source", "target", "outbound"], name: "index_webmentions_on_source_and_target_and_outbound", unique: true
   end
 
 end
