@@ -14,7 +14,6 @@ class WebmentionsController < ApplicationController
         response['Location'] = webmention_url(webmention)
         head :created
       else
-        byebug
         render plain: 'Unacceptable webmention source or target', status: :bad_request
       end
     else
