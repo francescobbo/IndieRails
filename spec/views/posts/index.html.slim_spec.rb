@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "posts/index.html.slim" do
+describe 'posts/index.html.slim' do
   it 'provides email address with rel="me" attribute' do
     render
 
@@ -16,7 +16,7 @@ describe "posts/index.html.slim" do
 
     doc = Nokogiri::HTML(rendered)
     all_rel_me = doc.css('a[rel="me"]')
-    facebook = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/www.facebook.com\// }
+    facebook = all_rel_me.find { |me| me[:href] =~ %r{\Ahttps://www.facebook.com/} }
 
     expect(facebook).to_not be_nil
   end
@@ -26,7 +26,7 @@ describe "posts/index.html.slim" do
 
     doc = Nokogiri::HTML(rendered)
     all_rel_me = doc.css('a[rel="me"]')
-    twitter = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/twitter.com\// }
+    twitter = all_rel_me.find { |me| me[:href] =~ %r{\Ahttps://twitter.com/} }
 
     expect(twitter).to_not be_nil
   end
@@ -36,7 +36,7 @@ describe "posts/index.html.slim" do
 
     doc = Nokogiri::HTML(rendered)
     all_rel_me = doc.css('a[rel="me"]')
-    github = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/github.com\// }
+    github = all_rel_me.find { |me| me[:href] =~ %r{\Ahttps://github.com/} }
 
     expect(github).to_not be_nil
   end
@@ -46,7 +46,7 @@ describe "posts/index.html.slim" do
 
     doc = Nokogiri::HTML(rendered)
     all_rel_me = doc.css('a[rel="me"]')
-    keybase = all_rel_me.find { |me| me[:href] =~ /\Ahttps:\/\/keybase.io\// }
+    keybase = all_rel_me.find { |me| me[:href] =~ %r{\Ahttps://keybase.io/} }
 
     expect(keybase).to_not be_nil
   end

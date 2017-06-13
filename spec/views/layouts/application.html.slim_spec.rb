@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "layouts/application.html.slim" do
+describe 'layouts/application.html.slim' do
   it 'provides a link to the PGP public key' do
     render
 
