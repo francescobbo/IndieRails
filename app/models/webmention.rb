@@ -9,7 +9,7 @@ class Webmention < ApplicationRecord
   # It can work for sent webmentions too.
   enum status: %i[created accepted published rejected removed unsupported]
 
-  belongs_to :post
+  belongs_to :post, optional: true
 
   scope :inbound, -> { where(outbound: false) }
   scope :outbound, -> { where(outbound: true) }

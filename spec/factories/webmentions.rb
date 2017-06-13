@@ -4,5 +4,7 @@ FactoryGirl.define do
     source 'https://someweb.site/123'
     target 'https://francescoboffa.com/my-page'
     status :created
+
+    post
   end
 end
