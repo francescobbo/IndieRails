@@ -6,8 +6,6 @@ class WebmentionsController < ApplicationController
                                                   target: params[:target],
                                                   outbound: false)
 
-    byebug
-
     webmention.status = :created if webmention.new_record?
 
     if !webmention.new_record? || webmention.save

@@ -36,7 +36,8 @@ class Post < ApplicationRecord
     client = WebmentionClient.new
     source = Rails.application.routes.url_helpers.post_url(self)
 
-    external_links.each do |link|
+    targets = Webmention.where(source: source, outbound: true).pluck(:target) | external_links
+    targets.each do |link|
       response = client.deliver(source, link)
 
       track_webmention(source, link, response)
