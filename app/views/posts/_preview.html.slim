@@ -7,5 +7,5 @@ article.h-entry
   .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
   = link_to url_for(post), class: 'u-url'
-    | Published
-    time.dt-published =< post.created_at.iso8601
+    | Published on
+    time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)

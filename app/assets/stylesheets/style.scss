@@ -2,6 +2,10 @@
 @import 'normalize';
 @import 'modules/*';
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   font-family: sans-serif;
 }
