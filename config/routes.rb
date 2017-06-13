@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }
 
-  resources :webmentions, only: [:create, :show]
+  resources :webmentions, only: %i[create show]
 
   resources :posts, path: '/', only: :show
 end

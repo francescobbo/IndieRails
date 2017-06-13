@@ -1,3 +1,14 @@
+AllCops:
+  Exclude:
+    - bin/**/*
+    - db/schema.rb
+    - db/migrate/**/*
+    - config/locales/**/*
+    - config/environments/*
+    - vendor/**/*
+    - Gemfile
+    - node_modules/**/*
+
 Metrics/LineLength:
   Max: 120
 
