@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20170613141303) do
     t.text "target", null: false
     t.integer "status", default: 0, null: false
     t.text "status_endpoint"
-    t.integer "post_id"
+    t.uuid "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source", "target", "outbound"], name: "index_webmentions_on_source_and_target_and_outbound", unique: true
   end
 
+  add_foreign_key "webmentions", "posts", on_delete: :cascade
 end

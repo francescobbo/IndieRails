@@ -6,11 +6,12 @@ class CreateWebmentions < ActiveRecord::Migration[5.1]
       t.text :target, null: false
       t.integer :status, null: false, default: 0
       t.text :status_endpoint
-      t.integer :post_id
+      t.uuid :post_id
 
       t.timestamps
     end
 
     add_index :webmentions, [:source, :target, :outbound], unique: true
+    add_foreign_key :webmentions, :posts, on_delete: :cascade
   end
 end
