@@ -1,8 +1,7 @@
 doctype html
 html
   head
-    title IndieRails
-    meta name='viewport' content='width=device-width,minimum-scale=1,initial-scale=1'
+    = display_meta_tags(default_meta_tags)
     
     = csrf_meta_tags
     = stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload'
