@@ -1,1 +1,25 @@
-= post.body
+- if post.title
+  h1 = post.title
+
+= link_to 'Edit', [:edit, :admin, post]
+
+== post.rendered_body
+
+h3 Outbound webmentions
+
+table
+  - post.outbound_webmentions.each do |webmention|
+    tr
+      td = webmention.target
+      td = webmention.status
+      td
+        - if webmention.status_endpoint
+          = link_to 'Status endpoint', webmention.status_endpoint
+
+h3 Inbound webmentions
+
+table
+  - post.inbound_webmentions.each do |webmention|
+    tr
+      td = webmention.source
+      td = webmention.status
