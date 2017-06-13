@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DeliverWebmentionsJob, type: :job do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#perform' do
+    it 'calls deliver_webmentions on the post' do
+      post = double
+      expect(post).to receive(:deliver_webmentions)
+
+      subject.perform(post)
+    end
+  end
 end
