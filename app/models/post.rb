@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   validates :kind, presence: true
   validates :title, presence: true, if: -> { kind == 'article' }
-  validates :body, presence: true, if: -> { kind.in?(['article', 'note']) }
+  validates :body, presence: true, if: -> { kind.in?(%w[article note]) }
 
   scope :published, -> { where(deleted: false) }
 
