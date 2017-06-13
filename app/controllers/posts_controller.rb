@@ -5,6 +5,10 @@ class PostsController < ApplicationController
   def show
     post = Post.find(params[:id])
 
+    set_meta_tags({
+      title: post.title.presence || "Status Update #{l(post.created_at, format: :short)}"
+    })
+
     if post.deleted?
       render :tombstone, status: :gone
     else
