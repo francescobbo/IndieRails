@@ -15,6 +15,8 @@ class Post < ApplicationRecord
 
   scope :published, -> { where(deleted: false) }
 
+  after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] }
+
   def body=(value)
     if value
       renderer = Redcarpet::Render::HTML.new({})
@@ -24,6 +26,10 @@ class Post < ApplicationRecord
     end
 
     self[:body] = value
+  end
+
+  def queue_webmentions_job
+    DeliverWebmentionsJob.perform_later(self)
   end
 
   def deliver_webmentions
