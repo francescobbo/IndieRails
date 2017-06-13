@@ -27,6 +27,7 @@ gem 'friendly_id'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'meta-tags'
+gem 'rouge'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
