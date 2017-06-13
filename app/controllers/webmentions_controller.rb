@@ -19,19 +19,10 @@ class WebmentionsController < ApplicationController
   def show
     webmention = Webmention.inbound.find(params[:id])
 
-    case webmention.status.to_sym
-      when :created
-        render plain: 'The webmention is pending verification', status: :created
-      when :accepted
-        render plain: 'The webmention has been verified and is pending manual approval', status: :created
-      when :published
-        render plain: 'The webmention has been approved and may be visible on the mentioned page'
-      when :rejected
-        render plain: 'The webmention has been rejected', status: :unprocessable_entity
-      when :removed
-        render plain: 'The webmention has been removed due to source content expiration', status: :gone
-      else
-        render plain: 'Internal Server Error', status: :internal_server_error
+    if webmention.status_response
+      render webmention.status_response
+    else
+      render plain: 'Internal Server Error', status: :internal_server_error
     end
   end
 end

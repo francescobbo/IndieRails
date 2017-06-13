@@ -25,4 +25,16 @@ class Webmention < ApplicationRecord
       errors.add(:target, "invalid domain") if URI.parse(target).host != 'francescoboffa.com'
     end
   end
+
+  RESPONSES = {
+    created: { plain: 'The webmention is pending verification', status: :created },
+    accepted: { plain: 'The webmention has been verified and is pending manual approval', status: :created },
+    published: { plain: 'The webmention has been approved and may be visible on the mentioned page' },
+    rejected: { plain: 'The webmention has been rejected', status: :unprocessable_entity },
+    removed: { plain: 'The webmention has been removed due to source content expiration', status: :gone }
+  }
+
+  def status_response
+    RESPONSES[status.to_sym]
+  end
 end

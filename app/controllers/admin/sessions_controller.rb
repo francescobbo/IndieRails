@@ -8,7 +8,7 @@ module Admin
         cookies.signed.encrypted[:admin] = true
         redirect_to admin_posts_path
       else
-        flash.now[:signin] = "Invalid password"
+        flash.now[:signin] = 'Invalid password'
         render :new
       end
     end

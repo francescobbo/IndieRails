@@ -57,7 +57,7 @@ module Admin
       post.deleted = true
       post.save
 
-      redirect_to [:admin, :posts]
+      redirect_to %i[admin posts]
     end
 
     def undestroy
