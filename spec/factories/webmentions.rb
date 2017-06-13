@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :webmention do
     outbound false
-    source 'MyText'
-    target 'MyText'
-    status 1
-    post_id 1
+    source 'https://someweb.site/123'
+    target 'https://francescoboffa.com/my-page'
+    status :created
   end
 end
