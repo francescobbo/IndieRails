@@ -5,6 +5,7 @@ class CreateWebmentions < ActiveRecord::Migration[5.1]
       t.text :source, null: false
       t.text :target, null: false
       t.integer :status, null: false, default: 0
+      t.text :status_endpoint
       t.integer :post_id
 
       t.timestamps

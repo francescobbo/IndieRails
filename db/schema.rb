@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170613102512) do
     t.text "source", null: false
     t.text "target", null: false
     t.integer "status", default: 0, null: false
+    t.text "status_endpoint"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
