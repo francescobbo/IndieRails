@@ -10,6 +10,9 @@ class Post < ApplicationRecord
   validates :title, presence: true, if: -> { kind == 'article' }
   validates :body, presence: true, if: -> { kind.in?(%w[article note]) }
 
+  has_many :inbound_webmentions, -> { inbound }, class_name: 'Webmention', foreign_key: :post_id
+  has_many :outbound_webmentions, -> { outbound }, class_name: 'Webmention', foreign_key: :post_id
+
   scope :published, -> { where(deleted: false) }
 
   def body=(value)
@@ -36,6 +39,7 @@ class Post < ApplicationRecord
 
   def track_webmention(source, link, response)
     webmention = Webmention.find_or_initialize_by(source: source, target: link, outbound: true)
+    webmention.post = self
     response_code = response&.code&.to_i
 
     if !response || !response_code.in?(200..202)

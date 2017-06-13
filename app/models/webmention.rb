@@ -9,11 +9,14 @@ class Webmention < ApplicationRecord
   # It can work for sent webmentions too.
   enum status: %i[created accepted published rejected removed unsupported]
 
+  belongs_to :post
+
   scope :inbound, -> { where(outbound: false) }
   scope :outbound, -> { where(outbound: true) }
 
   validates :source, :target, presence: true, format: /\A#{URI.regexp(%w[http https])}\z/
   validates :outbound, inclusion: { in: [true, false] }
+  validates :post, presence: true, if: -> { outbound? }
   validate :check_source, if: -> { source.present? }
   validate :check_target, if: -> { target.present? }
 

@@ -5,7 +5,7 @@ describe WebmentionClient do
     it 'discovers the webmention endpoint for the target' do
       expect(subject).to receive(:discover) { URI.parse('https://wm.rocks/endpoint') }
 
-      stub_request(:any, "https://wm.rocks/endpoint")
+      stub_request(:any, 'https://wm.rocks/endpoint')
 
       subject.deliver('me', 'there')
     end
@@ -14,7 +14,7 @@ describe WebmentionClient do
       it 'sends a webmention request' do
         allow(subject).to receive(:discover) { URI.parse('https://wm.rocks/endpoint') }
 
-        request = stub_request(:post, "https://wm.rocks/endpoint").with(body: { source: 'me', target: 'there' })
+        request = stub_request(:post, 'https://wm.rocks/endpoint').with(body: { source: 'me', target: 'there' })
 
         subject.deliver('me', 'there')
 
