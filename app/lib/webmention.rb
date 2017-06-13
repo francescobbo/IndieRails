@@ -68,5 +68,7 @@ class Webmention
       match = header.match(/\A.*<(.+)>\s*;\s*(?:rel=webmention|rel=".*\bwebmention\b.*")\s*\z/)
       return match[1] if match
     end
+
+    nil
   end
 end
