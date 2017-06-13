@@ -8,11 +8,13 @@ class WebmentionsController < ApplicationController
 
     if webmention.new_record?
       webmention.status = :created
+      webmention.outbound = false
 
       if webmention.save
         response['Location'] = webmention_url(webmention)
         head :created
       else
+        byebug
         render plain: 'Unacceptable webmention source or target', status: :bad_request
       end
     else
@@ -24,7 +26,7 @@ class WebmentionsController < ApplicationController
   def show
     webmention = Webmention.inbound.find(params[:id])
 
-    case webmention.status
+    case webmention.status.to_sym
       when :created
         render plain: 'The webmention is pending verification', status: :created
       when :accepted

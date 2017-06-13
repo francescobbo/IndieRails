@@ -13,7 +13,7 @@ class Webmention < ApplicationRecord
   scope :outbound, -> { where(outbound: true) }
 
   validates :source, :target, presence: true, format: /\A#{URI.regexp(%w(http https))}\z/
-  validates :outbound, presence: true
+  validates :outbound, inclusion: { in: [true, false] }
   validate :check_domains, if: -> { source.present? && target.present? }
 
   def check_domains
