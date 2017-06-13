@@ -2,9 +2,11 @@ table
   - posts.each do |post|
     tr
       td
-        = post.title
+        = link_to [:admin, post]
+          = post.title
       td
-        = truncate(post.body)
+        = link_to [:admin, post]
+          = truncate(post.body)
       td
         = link_to 'Edit', [:edit, :admin, post]
         - if post.deleted?
