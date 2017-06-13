@@ -38,7 +38,7 @@ class Post < ApplicationRecord
 
     targets = Webmention.where(source: source, outbound: true).pluck(:target) | external_links
     targets.each do |link|
-      response = client.deliver(source, link)
+      response = client.deliver(source, link) rescue nil
 
       track_webmention(source, link, response)
     end
