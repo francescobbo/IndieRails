@@ -6,9 +6,11 @@ class Webmention
   def deliver(source, target)
     uri = discover(target)
 
-    request = Net::HTTP::Post.new(uri.request_uri, 'User-Agent' => user_agent)
-    request.set_form_data(source: source, target: target)
-    client(uri).request(request)
+    if uri
+      request = Net::HTTP::Post.new(uri.request_uri, 'User-Agent' => user_agent)
+      request.set_form_data(source: source, target: target)
+      client(uri).request(request)
+    end
   end
 
   def discover(url)
