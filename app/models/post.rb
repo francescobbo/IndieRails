@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   validates :title, presence: true, if: -> { kind == 'article' }
   validates :body, presence: true, if: -> { kind.in?(['article', 'note']) }
 
+  scope :published, -> { where(deleted: false) }
+
   def body=(value)
     if value
       renderer = Redcarpet::Render::HTML.new({})
