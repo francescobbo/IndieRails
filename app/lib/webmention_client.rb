@@ -1,4 +1,7 @@
 require 'net/http'
+require 'active_support'
+require 'active_support/core_ext'
+require 'nokogiri'
 
 class WebmentionClient
   class UnexpectedResponse < StandardError; end

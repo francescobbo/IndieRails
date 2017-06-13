@@ -56,6 +56,8 @@ group :test do
   gem 'timecop'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://webmention.rocks/test/11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Webmention - Francesco Boffa
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.12.0
+      Date:
+      - Tue, 13 Jun 2017 13:12:51 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Content-Length:
+      - '26336'
+      Connection:
+      - keep-alive
+      Link:
+      - </test/11/webmention>; rel="webmention"
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 13 Jun 2017 13:12:51 GMT
+recorded_with: VCR 3.0.3
