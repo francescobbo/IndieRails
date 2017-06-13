@@ -2,16 +2,22 @@ class WebmentionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    webmention = Webmention.create(source: params[:source],
-                                   target: params[:target],
-                                   outbound: false,
-                                   status: :created)
+    webmention = Webmention.find_or_initialize_by(source: params[:source],
+                                                  target: params[:target],
+                                                  outbound: false)
 
-    if webmention.save
-      response['Location'] = webmention_url(webmention)
-      render status: :created
+    if webmention.new_record?
+      webmention.status = :created
+
+      if webmention.save
+        response['Location'] = webmention_url(webmention)
+        head :created
+      else
+        render plain: 'Unacceptable webmention source or target', status: :bad_request
+      end
     else
-      render text: 'Unacceptable webmention source or target', status: :bad_request
+      response['Location'] = webmention_url(webmention)
+      head :created
     end
   end
 
@@ -20,17 +26,17 @@ class WebmentionsController < ApplicationController
 
     case webmention.status
       when :created
-        render text: 'The webmention is pending verification', status: :created
+        render plain: 'The webmention is pending verification', status: :created
       when :accepted
-        render text: 'The webmention has been verified and is pending manual approval', status: :created
+        render plain: 'The webmention has been verified and is pending manual approval', status: :created
       when :published
-        render text: 'The webmention has been approved and may be visible on the mentioned page'
+        render plain: 'The webmention has been approved and may be visible on the mentioned page'
       when :rejected
-        render text: 'The webmention has been rejected', status: :unprocessable_entity
+        render plain: 'The webmention has been rejected', status: :unprocessable_entity
       when :removed
-        render text: 'The webmention has been removed due to source content expiration', status: :gone
+        render plain: 'The webmention has been removed due to source content expiration', status: :gone
       else
-        render text: 'Internal Server Error', status: :internal_server_error
+        render plain: 'Internal Server Error', status: :internal_server_error
     end
   end
 end
