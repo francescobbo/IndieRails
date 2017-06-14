@@ -1,14 +1,18 @@
 article.h-entry
-  - if post.title
-    h1.p-name = post.title
+  - if post.photo?
+    h1.p-name Photo update
+    = render 'photo_post', post: post
+  - else
+    - if post.title
+      h1.p-name = post.title
 
-  - if post.main_medium.present?
-    = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo'
+    - if post.main_medium.present?
+      = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo'
 
-  .e-content class="#{'p-name' unless post.title}" == post.rendered_body
+    .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
-  = link_to url_for(post), class: 'u-url'
-    | Published
-    time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)
+    = link_to url_for(post), class: 'u-url'
+      | Published
+      time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)
 
   = render 'author', class_name: 'p-author'

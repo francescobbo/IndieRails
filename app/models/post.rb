@@ -30,6 +30,10 @@ class Post < ApplicationRecord
     self[:body] = value
   end
 
+  def photo?
+    note? && main_medium
+  end
+
   def queue_webmentions_job
     DeliverWebmentionsJob.perform_later(self)
   end
