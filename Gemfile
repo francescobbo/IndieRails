@@ -29,6 +29,7 @@ gem 'daemons'
 gem 'meta-tags'
 gem 'rouge'
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.9'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
