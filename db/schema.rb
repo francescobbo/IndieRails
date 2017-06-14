@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170614091728) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "media", force: :cascade do |t|
+  create_table "media", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "file_file_name", null: false
     t.string "file_content_type", null: false
     t.integer "file_file_size", null: false
