@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }
 
+  get :micropub, to: 'micropub#discovery', as: :micropub
+  post :micropub, to: 'micropub#actions'
+
   resources :webmentions, only: %i[create show]
 
   resources :posts, path: '/', only: :show
