@@ -12,11 +12,18 @@ blockquote {
     padding: 8px 24px;
     box-shadow: 2px 3px 5px rgba(0,0,0,.13);
     border-left: 7px solid #2e7d32;
+    overflow-x: auto;
   }
 }
 
 .post--photo {
+  margin-top: 1em;
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
 
   max-width: 100%;
 
@@ -29,18 +36,24 @@ blockquote {
   }
 
   &__caption {
-    flex: 1 0 250px;
-    margin-left: 16px;
+    flex: 1 0;
 
-    p:first-child {
-      margin-top: 0;
+    @media (min-width: 800px) {
+      margin-left: 16px;
+      flex-basis:  250px;
+
+      p:first-child {
+        margin-top: 0;
+      }
     }
   }
 }
 
 .post--preview {
-  .post--photo__image img {
-    max-width: 300px;
+  @media (min-width: 800px) {
+    .post--photo__image img {
+      max-width: 300px;
+    }
   }
 
   border-bottom: 3px dashed #ddd;
