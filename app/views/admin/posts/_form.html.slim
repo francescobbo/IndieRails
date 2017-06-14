@@ -6,6 +6,11 @@
   .admin-field
     = f.label :title
     = f.text_field :title
+
+  = f.fields_for :main_medium do |main_medium_form|
+    .admin-field
+      = main_medium_form.label :file
+      = main_medium_form.file_field :file
   
   .admin-field
     = f.label :body

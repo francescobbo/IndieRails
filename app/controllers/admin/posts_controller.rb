@@ -7,8 +7,11 @@ module Admin
     end
 
     def new
+      post = Post.new
+      post.build_main_medium
+
       render locals: {
-        post: Post.new
+        post: post
       }
     end
 
@@ -71,7 +74,7 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:kind, :title, :body)
+      params.require(:post).permit(:kind, :title, :body, main_medium_attributes: [:file])
     end
   end
 end

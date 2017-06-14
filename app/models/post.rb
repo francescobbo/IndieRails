@@ -6,6 +6,9 @@ class Post < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
+  belongs_to :main_medium, optional: true, class_name: 'Medium'
+  accepts_nested_attributes_for :main_medium
+
   validates :kind, presence: true
   validates :title, presence: true, if: -> { kind == 'article' }
   validates :body, presence: true, if: -> { kind.in?(%w[article note]) }
