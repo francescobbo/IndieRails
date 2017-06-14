@@ -1,0 +1,13 @@
+h1 All Media
+
+= link_to 'New', [:new, :admin, :medium]
+
+table
+  - media.each do |medium|
+    tr
+      td
+        = image_tag medium.file.url(:thumb)
+      td
+        = medium.file.url(:large)
+      td
+        = button_to 'Delete', [:admin, medium], method: :delete, data: { confirm: 'Are you sure?' }

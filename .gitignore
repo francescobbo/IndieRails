@@ -29,3 +29,4 @@
 config/secrets.yml.key
 
 .DS_Store
+/public/system

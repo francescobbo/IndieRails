@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :posts do
       post '/undestroy', on: :member, action: :undestroy
     end
+
+    resources :media, only: [:index, :new, :create, :destroy]
   end
 
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }

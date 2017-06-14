@@ -1,0 +1,11 @@
+= form_with model: [:admin, medium] do |f|
+  .admin-field
+    = f.label :file
+    = f.file_field :file
+  
+  .admin-field
+    = f.label :default_alt
+    = f.text_field :default_alt
+  
+  .admin-field
+    = f.submit
