@@ -97,6 +97,20 @@ Rails.application.configure do
     host: 'francescoboffa.com',
     protocol: 'https'
   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'media.francescoboffa.com',
+      access_key_id: Rails.application.secrets.aws_access_key_id,
+      secret_access_key: Rails.application.secrets.aws_secret_access_key,
+    },
+    path: ':class/:id/:attachment/:style/:filename',
+    s3_region: 'eu-central-1',
+    s3_protocol: 'https',
+    s3_host_alias: 'media.francescoboffa.com',
+    url: ':s3_alias_url'
+  }
 end
 
 Rails.application.routes.default_url_options = {
