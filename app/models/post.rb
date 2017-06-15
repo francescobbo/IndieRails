@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
+  has_many :webmentions
+  has_many :likes, -> { like }, class_name: 'Webmention'
   belongs_to :main_medium, optional: true, class_name: 'Medium'
   accepts_nested_attributes_for :main_medium
 

@@ -15,4 +15,13 @@ article.h-entry
       | Published
       time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)
 
+    - if post.likes.any?
+      section
+        h3 = "This post received #{pluralize(post.likes.count, 'like')}"
+        
+        .facepile
+          - post.likes.each do |like|
+            = link_to like.author_url, target: '_blank', class: 'facepile__link'
+              = image_tag like.author_image, alt: like.author_name, title: like.author_name, class: 'facepile__image'
+
   = render 'author', class_name: 'p-author'
