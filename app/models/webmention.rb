@@ -8,6 +8,7 @@ class Webmention < ApplicationRecord
   #   unsupported: (only for outbounds) the target does not support webmentions/pingbacks
   # It can work for sent webmentions too.
   enum status: %i[created accepted published rejected removed unsupported]
+  enum kind: %i[link like reply]
 
   belongs_to :post, optional: true
 
@@ -51,9 +52,15 @@ class Webmention < ApplicationRecord
   def check_webmention
     document = Nokogiri::HTML(WebmentionClient.new.fetch(source)[0].body)
 
-    candidate_links = document.css('.h-entry a[href]')
-    if candidate_links.any? { |link| link[:href] == target }
+    candidate_links = document.css('.h-entry a[href]').select { |link| link[:href] == target }
+    if candidate_links.any?
       # There's an actual link!
+
+      liked_links = document.css('.h-entry a.u-like-of[href], .h-entry .u-like-of a.u-url[href]')
+      if liked_links.any? { |link| link[:href] == target }
+        self.kind = :like
+      end
+
       self.status = :accepted
     else
       if status.in?['accepted', 'published']

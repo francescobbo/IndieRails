@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615132712) do
+ActiveRecord::Schema.define(version: 20170615163823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,10 @@ ActiveRecord::Schema.define(version: 20170615132712) do
     t.uuid "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kind", default: 0, null: false
+    t.string "author_name"
+    t.text "author_image"
+    t.text "author_url"
     t.index ["source", "target", "outbound"], name: "index_webmentions_on_source_and_target_and_outbound", unique: true
   end
 
