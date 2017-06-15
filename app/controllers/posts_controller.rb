@@ -9,17 +9,24 @@ class PostsController < ApplicationController
   def show
     post = Post.find(params[:id])
 
-    set_meta_tags({
-      title: post.title.presence || "Status Update #{l(post.created_at, format: :short)}",
-      description: truncate(post.content, separator: ' ', omission: ' ', length: 150)
-    })
+    if post.published?
+      set_meta_tags({
+        title: post.title.presence || "Status Update #{l(post.created_at, format: :short)}",
+        description: post.meta_description
+      })
 
-    if post.deleted?
-      render :tombstone, status: :gone
-    else
       render locals: {
         post: post
       }
+    elsif post.deleted?
+      set_meta_tags({
+        title: "This post has been deleted",
+        description: "This post has been deleted"
+      })
+
+      render :tombstone, status: :gone
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 end

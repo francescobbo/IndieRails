@@ -19,12 +19,30 @@
     padding: 8px;
   }
 
-  input[type=submit] {
+  input[type=submit], button[type=submit] {
     background: #2196f3;
     color: white;
     text-decoration: uppercase;
     border: none;
     border-radius: 2px;
     line-height: 32px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: "Roboto Slab";
+    margin-bottom: 1em;
+  }
+
+  &--post-save-buttons {
+    display: flex;
+
+    &__publish {
+      flex: 3;
+    }
+
+    &__draft {
+      background-color: #766 !important;
+      flex: 1;
+      margin-left: 16px;
+    }
   }
 }

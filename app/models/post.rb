@@ -16,9 +16,9 @@ class Post < ApplicationRecord
   has_many :inbound_webmentions, -> { inbound }, class_name: 'Webmention', foreign_key: :post_id
   has_many :outbound_webmentions, -> { outbound }, class_name: 'Webmention', foreign_key: :post_id
 
-  scope :published, -> { where(deleted: false) }
+  scope :published, -> { where(draft: false, deleted: false) }
 
-  after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] }
+  after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] || saved_changes[:draft] }
 
   def body=(value)
     if value
@@ -28,6 +28,24 @@ class Post < ApplicationRecord
     end
 
     self[:body] = value
+  end
+
+  def text_body
+    ActionController::Base.helpers.strip_tags(rendered_body)
+  end
+
+  def meta_description
+    ActionController::Base.helpers.truncate(text_body, separator: ' ', omission: ' ', length: 150)
+  end
+
+  def draft=(value)
+    self[:draft] = value
+    self[:published_at] ||= Time.now.utc if value
+    value
+  end
+
+  def published?
+    !draft? && !deleted?
   end
 
   def photo?

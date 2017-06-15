@@ -16,5 +16,6 @@
     = f.label :body
     = f.text_area :body, rows: 15
   
-  .admin-field
-    = f.submit
+  .admin-field.admin-field--post-save-buttons
+    = f.button "Publish", class: 'admin-field--post-save-buttons__publish', name: "post[draft]", value: false
+    = f.button "Save as draft", class: 'admin-field--post-save-buttons__draft', name: "post[draft]", value: true
