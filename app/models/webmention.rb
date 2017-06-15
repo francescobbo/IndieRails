@@ -20,12 +20,27 @@ class Webmention < ApplicationRecord
   validate :check_source, if: -> { source.present? }
   validate :check_target, if: -> { target.present? }
 
+  before_create :check_acceptable_target, if: -> { inbound? }
+
   def check_source
     errors.add(:source, 'invalid domain') if outbound? != (URI.parse(source).host == 'francescoboffa.com')
   end
 
   def check_target
     errors.add(:target, 'invalid domain') if outbound? == (URI.parse(target).host == 'francescoboffa.com')
+  end
+
+  def inbound?
+    !outbound?
+  end
+
+  def check_acceptable_target
+    route = Rails.application.routes.recognize_path(target)
+
+    self.post = Post.find(route[:id]) if route[:controller] == 'posts' && route[:action] == 'show'
+
+  rescue ActiveRecord::RecordNotFound, ActionController::RoutingError
+    errors.add(:target, 'invalid target URL')
   end
 
   RESPONSES = {
