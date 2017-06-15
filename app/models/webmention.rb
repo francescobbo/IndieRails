@@ -21,6 +21,7 @@ class Webmention < ApplicationRecord
   validate :check_target, if: -> { target.present? }
 
   before_create :check_acceptable_target, if: -> { inbound? }
+  after_create :enqueue_webmention_check, if: -> { inbound? }
 
   def check_source
     errors.add(:source, 'invalid domain') if outbound? != (URI.parse(source).host == 'francescoboffa.com')
@@ -39,8 +40,36 @@ class Webmention < ApplicationRecord
 
     self.post = Post.find(route[:id]) if route[:controller] == 'posts' && route[:action] == 'show'
 
-  rescue ActiveRecord::RecordNotFound, ActionController::RoutingError
+  rescue ActiveRecord::RecordNotFound
     errors.add(:target, 'invalid target URL')
+  end
+
+  def enqueue_webmention_check
+    CheckWebmentionJob.perform_later(self)
+  end
+
+  def check_webmention
+    document = Nokogiri::HTML(WebmentionClient.new.fetch(source)[0].body)
+
+    candidate_links = document.css('.h-entry a[href]')
+    if candidate_links.any? { |link| link[:href] == target }
+      # There's an actual link!
+      self.status = :accepted
+    else
+      if status.in?['accepted', 'published']
+        # We verified this mention before and we cannot find it anymore
+        self.status = :removed
+      else
+        # This looks pretty much like SPAM
+        self.status = :rejected
+      end
+    end
+
+  rescue StandardError
+    # Something went wrong
+    self.status = :rejected
+  ensure
+    save
   end
 
   RESPONSES = {
