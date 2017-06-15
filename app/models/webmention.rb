@@ -50,26 +50,40 @@ class Webmention < ApplicationRecord
   end
 
   def check_webmention
-    document = Nokogiri::HTML(WebmentionClient.new.fetch(source)[0].body)
+    response, final_url = WebmentionClient.new.fetch(source)
 
-    candidate_links = document.css('.h-entry a[href]').select { |link| link[:href] == target }
-    if candidate_links.any?
-      # There's an actual link!
+    if response.code == '200'
+      document = Nokogiri::HTML(response.body)
 
-      liked_links = document.css('.h-entry a.u-like-of[href], .h-entry .u-like-of a.u-url[href]')
-      if liked_links.any? { |link| link[:href] == target }
-        self.kind = :like
-      end
+      candidate_links = document.css('.h-entry a[href]').select { |link| link[:href] == target }
+      if candidate_links.any?
+        # There's an actual link!
 
-      self.status = :accepted
-    else
-      if status.in?['accepted', 'published']
-        # We verified this mention before and we cannot find it anymore
-        self.status = :removed
+        liked_links = document.css('.h-entry a.u-like-of[href], .h-entry .u-like-of a.u-url[href]')
+        if liked_links.any? { |link| link[:href] == target }
+          self.kind = :like
+        end
+
+        author_info = document.css('.h-card').first
+        if author_info
+          self.author_name = author_info.css('.p-name').first&.text
+          self.author_name ||= author_info.css('.u-url[rel=me]').first.text
+          self.author_image = URI.join(final_url, author_info.css('.u-photo').first[:src]).to_s
+          self.author_url = URI.join(final_url, author_info.css('.u-url').first[:href]).to_s
+        end
+
+        self.status = :accepted
       else
-        # This looks pretty much like SPAM
-        self.status = :rejected
+        if status.in?['accepted', 'published']
+          # We verified this mention before and we cannot find it anymore
+          self.status = :removed
+        else
+          # This looks pretty much like SPAM
+          self.status = :rejected
+        end
       end
+    else
+      self.status = :rejected
     end
 
   rescue StandardError
