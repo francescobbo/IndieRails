@@ -7,6 +7,10 @@
     = f.label :title
     = f.text_field :title
 
+  .admin-field
+    = f.label :reply_to, 'In reply to'
+    = f.text_field :reply_to
+
   = f.fields_for :main_medium do |main_medium_form|
     .admin-field
       = main_medium_form.label :file
