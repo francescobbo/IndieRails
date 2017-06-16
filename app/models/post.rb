@@ -55,7 +55,7 @@ class Post < ApplicationRecord
   end
 
   def queue_webmentions_job
-    DeliverWebmentionsJob.perform_later(self)
+    DeliverWebmentionsJob.perform_later(self) unless draft?
   end
 
   def deliver_webmentions
