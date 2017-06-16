@@ -5,7 +5,10 @@ article.h-entry
   - elsif post.like?
     h1.p-name Francesco Boffa liked on #{l(post.created_at, format: :short)}
     
-    = link_to post.reply_to, class: 'u-like-of'
+    - if post.body.present?
+      == post.rendered_body
+    
+    = link_to post.reply_to, post.reply_to, class: 'u-like-of'
   - else
     - if post.title
       h1.p-name = post.title
