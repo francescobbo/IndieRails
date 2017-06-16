@@ -74,7 +74,7 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:kind, :title, :body, :draft, main_medium_attributes: [:file])
+      params.require(:post).permit(:kind, :title, :reply_to, :body, :draft, main_medium_attributes: [:file])
     end
   end
 end
