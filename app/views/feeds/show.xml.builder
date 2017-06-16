@@ -12,7 +12,7 @@ xml.rss version: '2.0', 'xmlns:webfeeds' => 'http://webfeeds.org/rss/1.0' do
     posts.each do |post|
       xml.item do
         xml.guid post.id
-        xml.title post.title.presence || "Status Update #{l(post.created_at, format: :short)}"
+        xml.title post.title.presence || "Status Update #{l(post.published_at, format: :short)}"
         xml.author 'Francesco Boffa'
         xml.pubDate post.published_at.to_s
         xml.link post_url(post)

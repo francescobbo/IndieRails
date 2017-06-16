@@ -11,4 +11,4 @@ article.h-entry.post--preview
 
     = link_to url_for(post), class: 'u-url'
       | Published on
-      time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)
+      time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)

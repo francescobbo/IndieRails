@@ -3,7 +3,7 @@ article.h-entry
     h1.p-name Photo update
     = render 'photo_post', post: post
   - elsif post.like?
-    h1.p-name Francesco Boffa liked on #{l(post.created_at, format: :short)}
+    h1.p-name Francesco Boffa liked on #{l(post.published_at, format: :short)}
     
     - if post.body.present?
       == post.rendered_body
@@ -20,7 +20,7 @@ article.h-entry
 
     = link_to url_for(post), class: 'u-url'
       | Published
-      time.dt-published datetime=post.created_at.iso8601 =< l(post.created_at, format: :long)
+      time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
 
     - if post.likes.any?
       section
