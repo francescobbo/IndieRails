@@ -52,6 +52,12 @@ class Webmention < ApplicationRecord
   def check_webmention
     response, final_url = WebmentionClient.new.fetch(source)
 
+    if final_url =~ %r{://brid-gy.appspot.com/} && response.code == '200'
+      document = Nokogiri::HTML(response.body)
+      real_source = document.css('.h-entry > a.u-url').reject { |a| a[:href] =~ /(facebook|twitter|instagram)/ }.first[:href]
+      response, final_url = WebmentionClient.new.fetch(real_source)
+    end
+
     if response.code == '200'
       document = Nokogiri::HTML(response.body)
 
