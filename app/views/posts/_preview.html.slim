@@ -2,12 +2,19 @@ article.h-entry.post--preview
   - if post.photo?
     = render 'photo_post', post: post
   - else
-    - if post.title.present?
-      h1.p-name
-        = link_to post
-          = post.title
-    
-    .e-content class="#{'p-name' unless post.title}" == post.rendered_body
+    - if post.like?
+      .e-content.p-name
+        | I liked
+        =< link_to post.reply_to, post.reply_to, class: 'u-like-of'
+        div
+          == post.rendered_body
+    - else
+      - if post.title.present?
+        h1.p-name
+          = link_to post
+            = post.title
+      
+      .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
     = link_to url_for(post), class: 'u-url'
       | Published on
