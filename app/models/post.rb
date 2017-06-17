@@ -22,6 +22,7 @@ class Post < ApplicationRecord
   scope :published, -> { where(draft: false, deleted: false) }
 
   after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] || saved_changes[:draft] }
+  after_save :queue_scrapers_ping, if: -> { !draft? && !deleted? }
 
   def body=(value)
     if value
@@ -57,6 +58,10 @@ class Post < ApplicationRecord
 
   def queue_webmentions_job
     DeliverWebmentionsJob.perform_later(self) unless draft?
+  end
+
+  def queue_scrapers_ping
+    PingCrawlersJob.perform_later
   end
 
   def deliver_webmentions
