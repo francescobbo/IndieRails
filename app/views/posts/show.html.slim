@@ -6,9 +6,21 @@ article.h-entry
     h1.p-name Francesco Boffa liked on #{l(post.published_at, format: :short)}
     
     - if post.body.present?
-      == post.rendered_body
+      .e-content == post.rendered_body
     
-    = link_to post.reply_to, post.reply_to, class: 'u-like-of'
+    p
+      | Liked
+      =< link_to post.reply_to, post.reply_to, class: 'u-like-of'
+
+  - elsif post.reply?
+    h1.p-name Francesco Boffa replied on #{l(post.published_at, format: :short)}
+    
+    .e-content == post.rendered_body
+    
+    p
+      | In reply to
+      =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
+
   - else
     - if post.title
       h1.p-name = post.title

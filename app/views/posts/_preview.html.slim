@@ -4,8 +4,16 @@ article.h-entry.post--preview
   - else
     - if post.like?
       .e-content.p-name
-        | I liked
-        =< link_to post.reply_to, post.reply_to, class: 'u-like-of'
+        p
+          | I liked
+          =< link_to post.reply_to, post.reply_to, class: 'u-like-of'
+        div
+          == post.rendered_body
+    - elsif post.reply?
+      .e-content.p-name
+        p
+          | I replied to
+          =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
         div
           == post.rendered_body
     - else
