@@ -1,0 +1,18 @@
+- content_for :page_title
+  | All Articles
+
+table
+  - articles.each do |article|
+    tr
+      td
+        = link_to admin_article_path(article)
+          = article.title
+      td
+        = link_to admin_article_path(article)
+          = truncate(article.body)
+      td
+        = link_to 'Edit', edit_admin_article_path(article)
+        - if article.deleted?
+          = button_to 'Undelete', undestroy_admin_article_path(article), method: :post, data: { confirm: 'Are you sure?' }
+        - else
+          = button_to 'Delete', admin_article_path(article), method: :delete, data: { confirm: 'Are you sure?' }

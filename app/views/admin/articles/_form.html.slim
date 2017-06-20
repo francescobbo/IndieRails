@@ -1,15 +1,7 @@
-= form_with model: [:admin, post] do |f|
-  .admin-field
-    = f.label :kind
-    = f.select :kind, Post.kinds.keys.map { |kind| [kind.titleize, kind] }
-  
+= form_with model: article do |f|
   .admin-field
     = f.label :title
     = f.text_field :title
-
-  .admin-field
-    = f.label :reply_to, 'In reply to'
-    = f.text_field :reply_to
 
   = f.fields_for :main_medium do |main_medium_form|
     .admin-field

@@ -1,18 +1,18 @@
-- if post.title
+- if article.title
   - content_for :page_title
-    = post.title
+    = article.title
 
-= link_to 'Edit', [:edit, :admin, post]
+= link_to 'Edit', edit_admin_article_path(article)
 
-- if post.main_medium
-  = image_tag post.main_medium.file.url(:thumb)
+- if article.main_medium
+  = image_tag article.main_medium.file.url(:thumb)
 
-== post.rendered_body
+== article.rendered_body
 
 h3 Outbound webmentions
 
 table
-  - post.outbound_webmentions.each do |webmention|
+  - article.outbound_webmentions.each do |webmention|
     tr
       td = webmention.target
       td = webmention.status
@@ -23,7 +23,7 @@ table
 h3 Inbound webmentions
 
 table
-  - post.inbound_webmentions.each do |webmention|
+  - article.inbound_webmentions.each do |webmention|
     tr
       td = webmention.source
       td = webmention.status
