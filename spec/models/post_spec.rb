@@ -36,9 +36,9 @@ RSpec.describe Post, type: :model do
 
       allow_any_instance_of(WebmentionClient).to receive(:deliver).with(anything, 'https://www.google.com')
 
-      expect {
+      expect do
         post.deliver_webmentions
-      }.to change { Webmention.count }.by 1
+      end.to change { Webmention.count }.by 1
     end
 
     it 'saves the webmention status endpoint when the response is 201' do

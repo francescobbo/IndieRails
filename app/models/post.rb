@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   validates :kind, presence: true
   validates :title, presence: true, if: -> { kind == 'article' }
   validates :body, presence: true, if: -> { kind.in?(%w[article note]) }
-  validates :reply_to, presence: true, format: /\A#{URI.regexp(%w[http https])}\z/, if: -> { kind.in?(%w[reply rsvp like bookmark repost])}
+  validates :reply_to, presence: true, format: /\A#{URI.regexp(%w[http https])}\z/, if: -> { kind.in?(%w[reply rsvp like bookmark repost]) }
 
   has_many :inbound_webmentions, -> { inbound }, class_name: 'Webmention', foreign_key: :post_id
   has_many :outbound_webmentions, -> { outbound }, class_name: 'Webmention', foreign_key: :post_id
@@ -70,7 +70,11 @@ class Post < ApplicationRecord
 
     targets = Webmention.where(source: source, outbound: true).pluck(:target) | [reply_to] | external_links
     targets.compact.each do |link|
-      response = client.deliver(source, link) rescue nil
+      response = begin
+                   client.deliver(source, link)
+                 rescue
+                   nil
+                 end
 
       track_webmention(source, link, response)
     end

@@ -40,7 +40,6 @@ class Webmention < ApplicationRecord
     route = Rails.application.routes.recognize_path(target)
 
     self.post = Post.find(route[:id]) if route[:controller] == 'posts' && route[:action] == 'show'
-
   rescue ActiveRecord::RecordNotFound
     errors.add(:target, 'invalid target URL')
   end
@@ -66,9 +65,7 @@ class Webmention < ApplicationRecord
         # There's an actual link!
 
         liked_links = document.css('.h-entry a.u-like-of[href], .h-entry .u-like-of a.u-url[href]')
-        if liked_links.any? { |link| link[:href] == target }
-          self.kind = :like
-        end
+        self.kind = :like if liked_links.any? { |link| link[:href] == target }
 
         author_info = document.css('.h-card').first
         if author_info
@@ -80,18 +77,17 @@ class Webmention < ApplicationRecord
 
         self.status = :accepted
       else
-        if status.in?['accepted', 'published']
-          # We verified this mention before and we cannot find it anymore
-          self.status = :removed
-        else
-          # This looks pretty much like SPAM
-          self.status = :rejected
-        end
+        self.status = if status.in?['accepted', 'published']
+                        # We verified this mention before and we cannot find it anymore
+                        :removed
+                      else
+                        # This looks pretty much like SPAM
+                        :rejected
+                      end
       end
     else
       self.status = :rejected
     end
-
   rescue StandardError
     # Something went wrong
     self.status = :rejected

@@ -20,7 +20,7 @@ module Admin
       medium = Medium.new(media_params)
 
       if medium.save
-        redirect_to [:admin, :media]
+        redirect_to %i[admin media]
       else
         render :new, locals: {
           medium: medium
@@ -32,7 +32,7 @@ module Admin
       medium = Medium.find(params[:id])
       medium.destroy
 
-      redirect_to [:admin, :media]
+      redirect_to %i[admin media]
     end
 
     private
