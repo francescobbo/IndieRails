@@ -1,0 +1,14 @@
+@import 'fonts';
+@import 'normalize';
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+<%= Rouge::Themes::Github.render(scope: '.e-content .highlight') %>

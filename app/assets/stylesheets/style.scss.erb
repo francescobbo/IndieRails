@@ -1,10 +1,5 @@
-@import 'fonts';
-@import 'normalize';
+@import 'base';
 @import 'modules/*';
-
-html {
-  -webkit-font-smoothing: antialiased;
-}
 
 body {
   font-family: sans-serif;
@@ -26,24 +21,3 @@ h1 a, h1.p-name {
 h1, h2, h3 {
   font-family: "Roboto Slab";
 }
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.admin__signout {
-  background: #f44336;
-  color: white;
-  border: none;
-  line-height: 32px;
-  border-radius: 2px;
-  margin-top: 8px;
-  display: inline-block;
-  text-decoration: none;
-  padding: 0 8px;
-  margin-right: 16px;
-}
-
-<%= Rouge::Themes::Github.render(scope: '.e-content .highlight') %>

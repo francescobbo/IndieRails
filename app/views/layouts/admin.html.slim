@@ -1,14 +1,12 @@
 doctype html
-html
+html lang='en'
   head
     = display_meta_tags(default_meta_tags)
     
     = csrf_meta_tags
-    = stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    
-    link rel="pgpkey" href="/pgpkey.pub"
-  
+    = stylesheet_link_tag    'admin'
+    = javascript_include_tag 'admin'
+
   body
     .container
       = link_to 'Sign out', admin_signout_path, method: :delete, class: 'admin__signout'
