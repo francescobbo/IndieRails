@@ -9,10 +9,14 @@ html lang='en'
 
   body
     = render 'navigation_drawer'
+    
+    .header
+      .fa.fa-bars data-behavior="open-navigation-drawer"
+      
+      h1 = content_for :page_title
+      
+      = link_to admin_signout_path, method: :delete
+        .fa.fa-power-off
 
-    div data-behavior="open-navigation-drawer" open
-
-    = link_to 'Sign out', admin_signout_path, method: :delete, class: 'admin__signout'
-    => link_to 'All posts', admin_posts_path
-    => link_to 'All media', admin_media_path
-    = yield
+    .container
+      = yield

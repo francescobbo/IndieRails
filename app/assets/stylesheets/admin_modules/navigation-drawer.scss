@@ -7,6 +7,7 @@ $theme: 'dark';
   left: 0;
   right: 56px;
   z-index: 10;
+  overflow-x: hidden;
 
   @if $theme == 'dark' {
     background: #303030;
@@ -53,7 +54,7 @@ $theme: 'dark';
   &__header {
     background-image: asset-url('navigation-drawer__header');
     height: 170px;
-    padding: 40px 16px 8px;
+    padding: 40px 0 8px;
     box-sizing: border-box;
   }
 
@@ -61,6 +62,7 @@ $theme: 'dark';
     display: block;
     width: 64px;
     height: 64px;
+    margin-left: 16px;
     border-radius: 32px;
     margin-bottom: 4px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
@@ -68,13 +70,18 @@ $theme: 'dark';
 
   &__subtitle {
     height: 56px;
-    padding: 8px 0;
+    padding: 8px 16px;
     line-height: 20px;
     color: white;
   }
 
   &__email {
     font-weight: 400;
+  }
+
+  &__name, &__email {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &__subheader {

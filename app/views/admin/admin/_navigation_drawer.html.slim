@@ -18,4 +18,16 @@
       i.fa.fa-fw.fa-lg.fa-pencil
       | New Post
 
+  .navigation-drawer__subheader Media
+  
+  .navigation-drawer__list-item
+    = link_to [:admin, :media], class: 'navigation-drawer__item-link'
+      i.fa.fa-fw.fa-lg.fa-picture-o
+      | All Media
+
+  .navigation-drawer__list-item
+    = link_to [:new, :admin, :medium], class: 'navigation-drawer__item-link'
+      i.fa.fa-fw.fa-lg.fa-camera
+      | New Medium
+
 .navigation-drawer__overlay data-behavior="close-navigation-drawer"

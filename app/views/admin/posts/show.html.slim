@@ -1,5 +1,6 @@
 - if post.title
-  h1 = post.title
+  - content_for :page_title
+    = post.title
 
 = link_to 'Edit', [:edit, :admin, post]
 
