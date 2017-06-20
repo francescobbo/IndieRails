@@ -8,8 +8,8 @@ html lang='en'
     = javascript_include_tag 'admin'
 
   body
-    .container
-      = link_to 'Sign out', admin_signout_path, method: :delete, class: 'admin__signout'
-      => link_to 'All posts', admin_posts_path
-      => link_to 'All media', admin_media_path
-      = yield
+    = render 'sidebar'
+    = link_to 'Sign out', admin_signout_path, method: :delete, class: 'admin__signout'
+    => link_to 'All posts', admin_posts_path
+    => link_to 'All media', admin_media_path
+    = yield
