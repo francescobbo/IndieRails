@@ -1,10 +1,18 @@
 .header {
   height: 56px;
+  @media (min-width: 550px) {
+    height: 64px;
+  }
+
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
   color: white;
   display: flex;
+
+  @media (min-width: 1300px) {
+    margin-left: 280px;
+  }
 
   &::after {
     position: fixed;
@@ -15,6 +23,10 @@
     background: #303030;
     content: '';
     z-index: -1;
+
+    @media (min-width: 1300px) {
+      left: 280px;
+    }
   }
 
   .fa-bars, .fa-power-off {
@@ -24,6 +36,20 @@
     font-size: 1.3333em;
     margin: 4px 20px 4px 4px;
     flex-shrink: 0;
+
+    @media (min-width: 550px) {
+      margin: 8px 20px 8px 4px;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .fa-bars {
+      display: none;
+    }
+
+    h1 {
+      padding-left: 16px;
+    }
   }
 
   h1 {
@@ -33,6 +59,9 @@
     font-size: 20px;
     flex: 1;
     line-height: 56px;
+    @media (min-width: 550px) {
+      line-height: 64px;
+    }
 
     white-space: nowrap;
     overflow: hidden;
