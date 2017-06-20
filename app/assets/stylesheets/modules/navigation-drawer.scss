@@ -1,11 +1,18 @@
+$theme: 'dark';
+
 .navigation-drawer {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 56px;
-  background: white;
   z-index: 10;
+
+  @if $theme == 'dark' {
+    background: #303030;
+  } @else {
+    background: white;
+  }
 
   white-space: nowrap;
 
@@ -43,11 +50,43 @@
     transition: visibility 0ms linear 280ms, opacity 280ms ease-in-out;
   }
 
+  &__header {
+    background-image: asset-url('navigation-drawer__header');
+    height: 170px;
+    padding: 40px 16px 8px;
+    box-sizing: border-box;
+  }
+
+  &__avatar {
+    display: block;
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    margin-bottom: 4px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  &__subtitle {
+    height: 56px;
+    padding: 8px 0;
+    line-height: 20px;
+    color: white;
+  }
+
+  &__email {
+    font-weight: 400;
+  }
+
   &__subheader {
     overflow: hidden;
     text-overflow: ellipsis;
 
-    color: rgba(black, .54);
+    @if $theme == 'dark' {
+      color: rgba(white, .54);
+    } @else {
+      color: rgba(black, .54);
+    }
+
     line-height: 48px;
     padding: 0 16px;
   }
@@ -61,14 +100,24 @@
 
     cursor: pointer;
     display: block;
-    color: rgba(black, .87);
     text-decoration: none;
     line-height: 48px;
     padding: 0 16px;
 
+    @if $theme == 'dark' {
+      color: rgba(white, .87);
+    } @else {
+      color: rgba(black, .87);
+    }
+
     & > .fa {
       margin-right: 32px;
-      color: rgba(black, .54);
+
+      @if $theme == 'dark' {
+        color: rgba(white, .54);
+      } @else {
+        color: rgba(black, .54);
+      }
     }
   }
 }
