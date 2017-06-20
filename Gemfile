@@ -31,6 +31,8 @@ gem 'rouge'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.9'
 
+gem 'jquery-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
