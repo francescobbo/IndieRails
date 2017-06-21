@@ -30,3 +30,5 @@ config/secrets.yml.key
 
 .DS_Store
 /public/system
+/public/packs
+/node_modules

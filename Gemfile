@@ -31,6 +31,8 @@ gem 'rouge'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.9'
 
+gem 'webpacker', '~> 2.0'
+
 gem 'jquery-rails'
 gem 'sprockets'
 gem 'sprockets-es6'
