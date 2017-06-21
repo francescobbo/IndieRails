@@ -42,7 +42,7 @@ module ApplicationHelper
         "name": "Francesco Boffa",
         "logo": {
           "@type": "imageObject",
-          "url": asset_url('logo.svg')
+          "url": asset_url('logo.png')
         }
       },
       "articleBody": post.rendered_body
