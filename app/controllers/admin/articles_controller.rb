@@ -16,9 +16,11 @@ module Admin
     end
 
     def create
-      article_params.delete(:main_medium_attributes) if article_params[:main_medium_id]
+      art_params = article_params
+      art_params.delete(:main_medium_attributes) if art_params[:main_medium_attributes][:file].nil?
+      art_params.delete(:main_medium_attributes) if art_params[:main_medium_id]
 
-      article = Post.new(article_params)
+      article = Post.new(art_params)
       article.kind = :article
 
       if article.save
@@ -47,11 +49,15 @@ module Admin
     end
 
     def update
-      article_params.delete(:main_medium_attributes) if article_params[:main_medium_id]
+      art_params = article_params
+      if art_params[:main_medium_id] ||
+         (art_params[:main_medium_attributes] && art_params[:main_medium_attributes][:file].nil?)
+          art_params.delete('main_medium_attributes')
+      end
 
       article = Post.article.find(params[:id])
 
-      if article.update(article_params)
+      if article.update(art_params)
         redirect_to admin_article_path(article)
       else
         render :edit, locals: {
