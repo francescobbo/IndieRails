@@ -1,4 +1,4 @@
-= form_with model: [:admin, medium] do |f|
+= form_with model: [:admin, medium], local: true do |f|
   .admin-field
     = f.label :file
     = f.file_field :file

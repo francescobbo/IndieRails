@@ -1,12 +1,16 @@
-= form_with model: article, url: admin_articles_path do |f|
+= form_with model: [:admin, article], scope: :article, local: true do |f|
   .admin-field
     = f.text_field :title, placeholder: 'What do you want to talk about?', id: 'article_title_input'
 
+  .admin-field
+    = f.label :main_medium_id, 'Choose a cover image:'
+    = f.select :main_medium_id, Medium.all.map { |m| [m.default_alt, m.id] }, include_blank: true
+
   = f.fields_for :main_medium do |main_medium_form|
     .admin-field
-      = main_medium_form.label :file, 'Cover image'
+      = main_medium_form.label :file, 'Or upload:'
       = main_medium_form.file_field :file
-  
+
   .admin-field
     = f.text_area :body, rows: 15, id: 'post_content_textarea'
   

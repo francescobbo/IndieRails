@@ -16,6 +16,8 @@ module Admin
     end
 
     def create
+      article_params.delete(:main_medium_attributes) if article_params[:main_medium_id]
+
       article = Post.new(article_params)
       article.kind = :article
 
@@ -45,6 +47,8 @@ module Admin
     end
 
     def update
+      article_params.delete(:main_medium_attributes) if article_params[:main_medium_id]
+
       article = Post.article.find(params[:id])
 
       if article.update(article_params)
@@ -75,7 +79,7 @@ module Admin
     private
 
     def article_params
-      params.require(:post).permit(:title, :body, :draft, main_medium_attributes: [:file])
+      params.require(:article).permit(:title, :body, :draft, :main_medium_id, main_medium_attributes: [:file])
     end
   end
 end

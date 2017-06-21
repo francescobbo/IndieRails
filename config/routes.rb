@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     get '(*any)', to: 'admin#render404'
   end
 
+  direct :admin_posts do
+    [:admin, :articles]
+  end
+
+  direct :admin_post do |post|
+    admin_article_url(post)
+  end
+
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }
   get 'feed', to: 'feeds#show', as: :feed, defaults: { format: :xml }
 
