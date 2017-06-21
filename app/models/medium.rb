@@ -13,9 +13,7 @@ class Medium < ApplicationRecord
   before_save :extract_dimensions
 
   def extract_dimensions
-    return unless file?
-
-    tempfile = upload.queued_for_write[:original]
+    tempfile = file.queued_for_write[:original]
     if tempfile
       geometry = Paperclip::Geometry.from_file(tempfile)
       self.width, self.height = [geometry.width.to_i, geometry.height.to_i]
