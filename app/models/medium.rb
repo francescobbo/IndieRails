@@ -6,7 +6,8 @@ class Medium < ApplicationRecord
                     },
                     convert_options: {
                       thumb: '-quality 75 -strip'
-                    }
+                    },
+                    processors: [:thumbnail, :paperclip_optimizer]
 
   validates_attachment_content_type :file, content_type: /\Aimage\/.*\Z/
 

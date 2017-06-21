@@ -29,6 +29,7 @@ gem 'daemons'
 gem 'meta-tags'
 gem 'rouge'
 gem 'paperclip'
+gem 'paperclip-optimizer'
 gem 'aws-sdk', '~> 2.9'
 
 gem 'webpacker', '~> 2.0'
