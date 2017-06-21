@@ -38,9 +38,12 @@ module ApplicationHelper
         "url": "https://francescoboffa.com"
       },
       "publisher": {
-        "@type": "Person",
+        "@type": "Organization",
         "name": "Francesco Boffa",
-        "url": "https://francescoboffa.com"
+        "logo": {
+          "@type": "imageObject",
+          "url": asset_url('logo.svg')
+        }
       },
       "articleBody": post.rendered_body
     }
@@ -49,6 +52,8 @@ module ApplicationHelper
       data["image"] = {
         "@type": "imageObject",
         "url": post.main_medium.file.url(:large),
+        "width": post.main_medium.width,
+        "height": post.main_medium.height
       }
     end
 
