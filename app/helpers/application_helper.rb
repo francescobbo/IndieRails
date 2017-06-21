@@ -37,6 +37,11 @@ module ApplicationHelper
         "name": "Francesco Boffa",
         "url": "https://francescoboffa.com"
       },
+      "publisher": {
+        "@type": "Person",
+        "name": "Francesco Boffa",
+        "url": "https://francescoboffa.com"
+      },
       "articleBody": post.rendered_body
     }
   end
