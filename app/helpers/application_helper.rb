@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def post_jsonld(post)
-    {
+    data = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": post.title,
@@ -44,5 +44,14 @@ module ApplicationHelper
       },
       "articleBody": post.rendered_body
     }
+
+    if post.main_medium
+      data["image"] = {
+        "@type": "imageObject",
+        "url": post.main_medium.file.url(:large),
+      }
+    end
+
+    data
   end
 end
