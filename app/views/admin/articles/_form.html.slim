@@ -14,6 +14,8 @@
   .admin-field
     = f.text_area :body, rows: 15, id: 'post_content_textarea'
   
+  p.article__stats
+  
   .admin-field.admin-field--post-save-buttons
     = f.button "Publish", class: 'admin-field--post-save-buttons__publish', name: "post[draft]", value: false
     = f.button "Save as draft", class: 'admin-field--post-save-buttons__draft', name: "post[draft]", value: true
