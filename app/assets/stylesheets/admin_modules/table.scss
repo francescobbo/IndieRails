@@ -1,0 +1,20 @@
+table {
+  font-family: Roboto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 500;
+  text-align: left;
+  color: rgba(black, .54);
+  line-height: 48px;
+}
+
+tr:hover td {
+  background: #eee;
+}
+
+td {
+  line-height: 48px;
+}
