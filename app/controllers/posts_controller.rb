@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     set_meta_tags(title: 'Home Page',
-                  description: 'My personal home page')
+                  description: 'My ramblings about AWS, Ruby and Tech in general. I\'m getting AWS certified!')
   end
 
   def show

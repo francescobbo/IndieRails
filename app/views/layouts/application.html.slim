@@ -33,4 +33,5 @@ html
     .container
       = yield
 
+    = render 'blog_jsonld'
     = javascript_include_tag '//load.sumome.com/', 'data-sumo-site-id' => Rails.application.secrets.sumo_site_id, async: true
