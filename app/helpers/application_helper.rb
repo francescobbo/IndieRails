@@ -22,4 +22,22 @@ module ApplicationHelper
       ]
     }
   end
+
+  def post_jsonld(post)
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.meta_description,
+      "datePublished": post.published_at.iso8601,
+      "datemodified": post.updated_at.iso8601,
+      "mainEntityOfPage": "True",
+      "author": {
+        "@type": "Person",
+        "name": "Francesco Boffa",
+        "url": "https://francescoboffa.com"
+      },
+      "articleBody": post.rendered_body
+    }
+  end
 end

@@ -42,5 +42,8 @@ article.h-entry
           - post.likes.each do |like|
             = link_to like.author_url, target: '_blank', class: 'facepile__link'
               = image_tag like.author_image, alt: like.author_name, title: like.author_name, class: 'facepile__image'
+    
+    script type="application/ld+json"
+      == post_jsonld(post).to_json
 
   = render 'author', class_name: 'p-author'
