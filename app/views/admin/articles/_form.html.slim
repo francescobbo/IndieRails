@@ -1,19 +1,15 @@
-= form_with model: article do |f|
+= form_with model: article, url: admin_articles_path do |f|
   .admin-field
-    = f.label :title
-    = f.text_field :title
+    = f.text_field :title, placeholder: 'What do you want to talk about?', id: 'article_title_input'
 
   = f.fields_for :main_medium do |main_medium_form|
     .admin-field
-      = main_medium_form.label :file
+      = main_medium_form.label :file, 'Cover image'
       = main_medium_form.file_field :file
   
   .admin-field
-    = f.label :body
     = f.text_area :body, rows: 15, id: 'post_content_textarea'
   
   .admin-field.admin-field--post-save-buttons
     = f.button "Publish", class: 'admin-field--post-save-buttons__publish', name: "post[draft]", value: false
     = f.button "Save as draft", class: 'admin-field--post-save-buttons__draft', name: "post[draft]", value: true
-
-  #preview

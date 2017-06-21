@@ -1,0 +1,13 @@
+#article_title_input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 2em;
+  font-family: 'Roboto Slab';
+  padding: 8px 0;
+  font-weight: bold;
+  color: #ff6e40;
+
+  &:focus {
+    border-bottom-color: #ff6e40;
+  }
+}
