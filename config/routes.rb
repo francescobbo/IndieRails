@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
 
     resources :media, only: %i[index new create destroy]
+
+    get '(*any)', to: 'admin#render404'
   end
 
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }

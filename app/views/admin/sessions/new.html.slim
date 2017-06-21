@@ -3,5 +3,7 @@ p Insert the admin password
 = flash[:signin]
 
 = form_tag do
+  - if params[:next]
+    = hidden_field_tag :next, params[:next]
   = password_field_tag :password
   = submit_tag 'Sign in'

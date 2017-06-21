@@ -1,6 +1,7 @@
 .CodeMirror {
     color: #000;
     margin-bottom: 1em;
+    line-height: 1.618;
 }
 .CodeMirror-lines {
     padding: 4px 0
@@ -265,7 +266,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     margin: 0;
     white-space: pre;
     word-wrap: normal;
-    line-height: inherit;
     color: inherit;
     z-index: 2;
     position: relative;
