@@ -1,6 +1,8 @@
 class PingCrawlersJob < ApplicationJob
   queue_as :default
 
+  include Rails.application.routes.url_helpers
+
   def perform
     urls = [
       "https://www.google.com/webmasters/sitemaps/ping?sitemap=#{sitemap_url}",
