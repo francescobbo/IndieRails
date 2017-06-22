@@ -1,0 +1,2 @@
+class Reply < Post
+end

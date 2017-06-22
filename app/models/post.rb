@@ -19,6 +19,26 @@ class Post < ApplicationRecord
   after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] || saved_changes[:draft] }
   after_save :queue_scrapers_ping, if: -> { !draft? && !deleted? }
 
+  def article?
+    type == 'Article'
+  end
+
+  def note?
+    type == 'Note'
+  end
+
+  def reply?
+    type == 'Reply'
+  end
+
+  def like?
+    type == 'Like'
+  end
+
+  def photo?
+    note? && main_medium
+  end
+
   def body=(value)
     if value
       markdown = Redcarpet::Markdown.new(MarkdownRenderer.new, autolink: true, fenced_code_blocks: true)
@@ -45,10 +65,6 @@ class Post < ApplicationRecord
 
   def published?
     !draft? && !deleted?
-  end
-
-  def photo?
-    note? && main_medium
   end
 
   def queue_webmentions_job
