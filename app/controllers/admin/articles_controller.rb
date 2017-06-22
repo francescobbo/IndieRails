@@ -17,8 +17,10 @@ module Admin
 
     def create
       art_params = article_params
-      art_params.delete(:main_medium_attributes) if art_params[:main_medium_attributes][:file].nil?
-      art_params.delete(:main_medium_attributes) if art_params[:main_medium_id]
+      if art_params[:main_medium_id] ||
+         (art_params[:main_medium_attributes] && art_params[:main_medium_attributes][:file].nil?)
+          art_params.delete('main_medium_attributes')
+      end
 
       article = Article.new(art_params)
 

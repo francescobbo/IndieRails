@@ -17,8 +17,10 @@ module Admin
 
     def create
       n_params = note_params
-      n_params.delete(:main_medium_attributes) if n_params[:main_medium_attributes][:file].nil?
-      n_params.delete(:main_medium_attributes) if n_params[:main_medium_id]
+      if n_params[:main_medium_id] ||
+         (n_params[:main_medium_attributes] && n_params[:main_medium_attributes][:file].nil?)
+          art_params.delete('main_medium_attributes')
+      end
 
       note = Note.new(n_params)
       note.draft = false
