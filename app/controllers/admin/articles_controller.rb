@@ -32,7 +32,7 @@ module Admin
     end
 
     def show
-      article = Article.article.find(params[:id])
+      article = Article.find(params[:id])
 
       render locals: {
         article: article
@@ -40,7 +40,7 @@ module Admin
     end
 
     def edit
-      article = Article.article.find(params[:id])
+      article = Article.find(params[:id])
 
       render locals: {
         article: article
@@ -54,7 +54,7 @@ module Admin
           art_params.delete('main_medium_attributes')
       end
 
-      article = Article.article.find(params[:id])
+      article = Article.find(params[:id])
 
       if article.update(art_params)
         redirect_to admin_article_path(article)
@@ -66,7 +66,7 @@ module Admin
     end
 
     def destroy
-      article = Article.article.find(params[:id])
+      article = Article.find(params[:id])
       article.deleted = true
       article.save
 
@@ -74,7 +74,7 @@ module Admin
     end
 
     def undestroy
-      article = Article.article.find(params[:id])
+      article = Article.find(params[:id])
       article.deleted = false
       article.save
 

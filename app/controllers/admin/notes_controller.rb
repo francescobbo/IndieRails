@@ -33,7 +33,7 @@ module Admin
     end
 
     def show
-      note = Note.note.find(params[:id])
+      note = Note.find(params[:id])
 
       render locals: {
         note: note
@@ -41,7 +41,7 @@ module Admin
     end
 
     def edit
-      note = Note.note.find(params[:id])
+      note = Note.find(params[:id])
 
       render locals: {
         note: note
@@ -55,7 +55,7 @@ module Admin
           art_params.delete('main_medium_attributes')
       end
 
-      note = Note.note.find(params[:id])
+      note = Note.find(params[:id])
 
       if note.update(art_params)
         redirect_to admin_note_path(note)
@@ -67,7 +67,7 @@ module Admin
     end
 
     def destroy
-      note = Note.note.find(params[:id])
+      note = Note.find(params[:id])
       note.deleted = true
       note.save
 
@@ -75,7 +75,7 @@ module Admin
     end
 
     def undestroy
-      note = Note.note.find(params[:id])
+      note = Note.find(params[:id])
       note.deleted = false
       note.save
 
