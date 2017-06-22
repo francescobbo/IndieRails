@@ -15,6 +15,23 @@ blockquote {
     border-left: 7px solid #2e7d32;
     overflow-x: auto;
   }
+
+  table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+
+    thead {
+      color: #ff9900;
+      font-family: Roboto Slab;
+      font-size: 1.3em;
+    }
+
+    td {
+      padding: 11px 8px;
+      border: 1px solid #ccc;
+    }
+  }
 }
 
 .post--photo {
