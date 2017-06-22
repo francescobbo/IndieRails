@@ -25,4 +25,10 @@ Rails.application.routes.draw do
   resources :webmentions, only: %i[create show]
 
   resources :posts, path: '/', only: :show
+
+  [:article, :note, :like, :reply].each do |kind|
+    direct kind do |post|
+      post_url(post)
+    end
+  end
 end
