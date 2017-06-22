@@ -59,7 +59,7 @@ class Post < ApplicationRecord
 
   def draft=(value)
     self[:draft] = value
-    self[:published_at] ||= Time.now.utc if value
+    self[:published_at] ||= Time.now.utc unless value
     value
   end
 
