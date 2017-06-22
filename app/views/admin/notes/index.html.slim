@@ -1,0 +1,26 @@
+- content_for :page_title
+  | All Notes
+
+table
+  thead
+    tr
+      th
+      th Abstract
+      th Published at
+      th
+  
+  tbody
+    - notes.each do |note|
+      tr
+        td
+          = link_to 'View online', post_path(note)
+        td
+          = truncate(note.body)
+        td
+          = l(note.published_at, format: :long)
+        td
+          = link_to 'Edit', edit_admin_note_path(note)
+          - if note.deleted?
+            = button_to 'Undelete', undestroy_admin_note_path(note), method: :post, data: { confirm: 'Are you sure?' }
+          - else
+            = button_to 'Delete', admin_note_path(note), method: :delete, data: { confirm: 'Are you sure?' }

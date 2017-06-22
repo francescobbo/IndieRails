@@ -7,7 +7,7 @@ module Admin
     end
 
     def new
-      article = Post.new
+      article = Post.new(kind: :article)
       article.build_main_medium
 
       render locals: {

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       post '/undestroy', on: :member, action: :undestroy
     end
 
+    resources :notes do
+      post '/undestroy', on: :member, action: :undestroy
+    end
+
     resources :media, only: %i[index new create destroy]
 
     get '(*any)', to: 'admin#render404'
@@ -20,7 +24,11 @@ Rails.application.routes.draw do
   end
 
   direct :admin_post do |post|
-    admin_article_url(post)
+    if post.kind == :article
+      admin_article_url(post)
+    elsif post.kind == :note
+      admin_note_url(post)
+    end
   end
 
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }

@@ -1,0 +1,11 @@
+= form_with model: [:admin, note], scope: :note, local: true do |f|
+  = f.fields_for :main_medium do |main_medium_form|
+    .admin-field
+      = main_medium_form.label :file, 'Image:'
+      = main_medium_form.file_field :file
+
+  .admin-field
+    = f.text_area :body, rows: 10, id: 'post_content_textarea'
+    
+  .admin-field.admin-field--post-save-buttons
+    = f.button "Publish", class: 'admin-field--post-save-buttons__publish'
