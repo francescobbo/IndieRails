@@ -2,12 +2,12 @@ module Admin
   class ArticlesController < AdminController
     def index
       render locals: {
-        articles: Post.article
+        articles: Article.all
       }
     end
 
     def new
-      article = Post.new(kind: :article)
+      article = Article.new
       article.build_main_medium
 
       render locals: {
@@ -20,8 +20,7 @@ module Admin
       art_params.delete(:main_medium_attributes) if art_params[:main_medium_attributes][:file].nil?
       art_params.delete(:main_medium_attributes) if art_params[:main_medium_id]
 
-      article = Post.new(art_params)
-      article.kind = :article
+      article = Article.new(art_params)
 
       if article.save
         redirect_to admin_article_path(article)
@@ -33,7 +32,7 @@ module Admin
     end
 
     def show
-      article = Post.article.find(params[:id])
+      article = Article.article.find(params[:id])
 
       render locals: {
         article: article
@@ -41,7 +40,7 @@ module Admin
     end
 
     def edit
-      article = Post.article.find(params[:id])
+      article = Article.article.find(params[:id])
 
       render locals: {
         article: article
@@ -55,7 +54,7 @@ module Admin
           art_params.delete('main_medium_attributes')
       end
 
-      article = Post.article.find(params[:id])
+      article = Article.article.find(params[:id])
 
       if article.update(art_params)
         redirect_to admin_article_path(article)
@@ -67,7 +66,7 @@ module Admin
     end
 
     def destroy
-      article = Post.article.find(params[:id])
+      article = Article.article.find(params[:id])
       article.deleted = true
       article.save
 
@@ -75,7 +74,7 @@ module Admin
     end
 
     def undestroy
-      article = Post.article.find(params[:id])
+      article = Article.article.find(params[:id])
       article.deleted = false
       article.save
 

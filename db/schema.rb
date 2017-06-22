@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621133003) do
+ActiveRecord::Schema.define(version: 20170622150418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20170621133003) do
   end
 
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "kind", null: false
     t.string "slug"
     t.boolean "deleted", default: false, null: false
     t.text "title"
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170621133003) do
     t.boolean "draft", default: false, null: false
     t.datetime "published_at"
     t.text "reply_to"
+    t.string "type", default: "Article", null: false
   end
 
   create_table "webmentions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170621133003) do
     t.text "target", null: false
     t.integer "status", default: 0, null: false
     t.text "status_endpoint"
-    t.uuid "post_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "kind", default: 0, null: false
@@ -75,5 +75,4 @@ ActiveRecord::Schema.define(version: 20170621133003) do
   end
 
   add_foreign_key "posts", "media", column: "main_medium_id", on_delete: :restrict
-  add_foreign_key "webmentions", "posts", on_delete: :cascade
 end

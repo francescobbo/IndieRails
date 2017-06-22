@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   extend FriendlyId
 
-  enum kind: %i[note article reply rsvp like checkin event bookmark repost jam video scrobble review collection
-                venue read comics audio exercise food quotation recipe chicken]
+  # enum kind: %i[note article reply rsvp like checkin event bookmark repost jam video scrobble review collection
+  #               venue read comics audio exercise food quotation recipe chicken]
 
   friendly_id :title, use: :slugged
 
@@ -10,11 +10,6 @@ class Post < ApplicationRecord
   has_many :likes, -> { like }, class_name: 'Webmention'
   belongs_to :main_medium, optional: true, class_name: 'Medium'
   accepts_nested_attributes_for :main_medium
-
-  validates :kind, presence: true
-  validates :title, presence: true, if: -> { kind == 'article' }
-  validates :body, presence: true, if: -> { kind.in?(%w[article note]) }
-  validates :reply_to, presence: true, format: /\A#{URI.regexp(%w[http https])}\z/, if: -> { kind.in?(%w[reply rsvp like bookmark repost]) }
 
   has_many :inbound_webmentions, -> { inbound }, class_name: 'Webmention', foreign_key: :post_id
   has_many :outbound_webmentions, -> { outbound }, class_name: 'Webmention', foreign_key: :post_id

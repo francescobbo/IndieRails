@@ -10,19 +10,19 @@ RSpec.describe Post, type: :model do
   end
 
   context 'when the kind is note' do
-    subject { FactoryGirl.build(:post, kind: :note) }
+    subject { FactoryGirl.build(:post, type: 'Note') }
     it { is_expected.to validate_presence_of(:body) }
   end
 
   context 'when the kind is article' do
-    subject { FactoryGirl.build(:post, kind: :article) }
+    subject { FactoryGirl.build(:post, type: 'Article') }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:body) }
   end
 
   describe '#deliver_webmentions' do
     it 'sends webmentions to urls referenced in the post body' do
-      post = Post.new(body: 'https://www.google.com', kind: :note)
+      post = Note.new(body: 'https://www.google.com')
       post.save
 
       expect_any_instance_of(WebmentionClient).to receive(:deliver).with(anything, 'https://www.google.com')
@@ -31,7 +31,7 @@ RSpec.describe Post, type: :model do
     end
 
     it 'saves a Webmention object for every webmentioned url' do
-      post = Post.new(body: 'https://www.google.com', kind: :note)
+      post = Note.new(body: 'https://www.google.com')
       post.save
 
       allow_any_instance_of(WebmentionClient).to receive(:deliver).with(anything, 'https://www.google.com')
@@ -42,7 +42,7 @@ RSpec.describe Post, type: :model do
     end
 
     it 'saves the webmention status endpoint when the response is 201' do
-      post = Post.new(body: 'https://www.google.com', kind: :note)
+      post = Note.new(body: 'https://www.google.com')
       post.save
 
       response = double(code: '201')

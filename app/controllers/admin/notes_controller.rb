@@ -2,12 +2,12 @@ module Admin
   class NotesController < AdminController
     def index
       render locals: {
-        notes: Post.note
+        notes: Note.all
       }
     end
 
     def new
-      note = Post.new(kind: :note)
+      note = Note.new
       note.build_main_medium
 
       render locals: {
@@ -20,8 +20,7 @@ module Admin
       n_params.delete(:main_medium_attributes) if n_params[:main_medium_attributes][:file].nil?
       n_params.delete(:main_medium_attributes) if n_params[:main_medium_id]
 
-      note = Post.new(n_params)
-      note.kind = :note
+      note = Note.new(n_params)
       note.draft = false
 
       if note.save
@@ -34,7 +33,7 @@ module Admin
     end
 
     def show
-      note = Post.note.find(params[:id])
+      note = Note.note.find(params[:id])
 
       render locals: {
         note: note
@@ -42,7 +41,7 @@ module Admin
     end
 
     def edit
-      note = Post.note.find(params[:id])
+      note = Note.note.find(params[:id])
 
       render locals: {
         note: note
@@ -56,7 +55,7 @@ module Admin
           art_params.delete('main_medium_attributes')
       end
 
-      note = Post.note.find(params[:id])
+      note = Note.note.find(params[:id])
 
       if note.update(art_params)
         redirect_to admin_note_path(note)
@@ -68,7 +67,7 @@ module Admin
     end
 
     def destroy
-      note = Post.note.find(params[:id])
+      note = Note.note.find(params[:id])
       note.deleted = true
       note.save
 
@@ -76,7 +75,7 @@ module Admin
     end
 
     def undestroy
-      note = Post.note.find(params[:id])
+      note = Note.note.find(params[:id])
       note.deleted = false
       note.save
 
