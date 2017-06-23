@@ -1,13 +1,11 @@
 .author {
   display: flex;
   flex-direction: column;
-  margin: 1.6em 0;
+  margin: 1.6em 0 0;
   padding: 30px;
-  border: 1px solid #f0f4f7;
-  background: #f4f8fb;
-  border-radius: 5px;
-  color: #242628;
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 
   @media (min-width: 551px) {
     flex-wrap: nowrap;
@@ -27,9 +25,10 @@
     border-radius: 100%;
 
     & > img {
+      margin-bottom: 12px;
       width: 100px;
       height: 100px;
-      border: 6px solid #fff;
+      border: 5px solid #fff;
     }
   }
 
@@ -43,7 +42,6 @@
     p {
       margin: 10px 0 0 0;
       font-size: 14px;
-      color: #52636b;
     }
   }
 
@@ -51,6 +49,7 @@
     font-family: "Roboto Slab", serif;
     margin-top: 2.5px;
     font-size: 18px;
+    font-weight: bold;
     color: inherit;
   }
 
@@ -74,20 +73,38 @@
 
   &__me-link {
     display: inline-block;
-    background-color: #52636b;
     color: white;
     padding: 10px;
     border-radius: 3px;
-    width: 24px;
-    font-size: 18px;
+    width: 32px;
+    font-size: 1.6em;
     text-align: center;
     margin: 20px 0 0;
 
-    transition: .2s box-shadow ease-in-out, .2s background-color ease-in-out;
+    transition: .15s background-color ease-in-out;
 
     &:hover {
-      box-shadow: 0 3px 5px rgba(black, .3);
       background-color: #369;
+    }
+
+    &--so:hover {
+      background-color: #f48024;
+    }
+
+    &--fb:hover {
+      background-color: #3b5998;
+    }
+
+    &--li:hover {
+      background-color: #0077b5;
+    }
+
+    &--tw:hover {
+      background-color: #4099ff;
+    }
+
+    &--gh:hover {
+      background-color: #6e5494;
     }
   }
 }

@@ -15,17 +15,20 @@ section.h-card.author class="#{defined?(class_name) ? class_name : nil}"
         = mail_to 'fra.boffa@gmail.com', title: 'Email', rel: 'me', class: 'author__me-link u-email'
           .fa.fa-envelope
       li
-        = link_to 'https://twitter.com/frboffa', title: 'Twitter', rel: 'me', class: 'author__me-link'
+        = link_to 'https://twitter.com/frboffa', title: 'Twitter', rel: 'me', class: 'author__me-link author__me-link--tw'
           .fa.fa-twitter
       li
-        = link_to 'https://github.com/aomega08', title: 'GitHub', rel: 'me', class: 'author__me-link'
+        = link_to 'https://github.com/aomega08', title: 'GitHub', rel: 'me', class: 'author__me-link author__me-link--gh'
           .fa.fa-github
       li
-        = link_to 'https://www.linkedin.com/in/francescoboffa/', title: 'LinkedIn', rel: 'me', class: 'author__me-link'
+        = link_to 'https://www.linkedin.com/in/francescoboffa/', title: 'LinkedIn', rel: 'me', class: 'author__me-link author__me-link--li'
           .fa.fa-linkedin
       li
-        = link_to 'https://www.facebook.com/fr.boffa', title: 'Facebook', rel: 'me', class: 'author__me-link'
-          .fa.fa-facebook
+        = link_to 'https://www.facebook.com/fr.boffa', title: 'Facebook', rel: 'me', class: 'author__me-link author__me-link--fb'
+          .fa.fa-facebook-square
+      li
+        = link_to 'https://stackoverflow.com/users/720254/francesco-boffa', title: 'Stack Overflow', rel: 'me', class: 'author__me-link author__me-link--so'
+          .fa.fa-stack-overflow
       li
         = link_to 'https://keybase.io/fraboffa', title: 'Keybase', rel: 'me', class: 'author__me-link'
           .fa.fa-key
