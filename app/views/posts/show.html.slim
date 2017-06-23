@@ -22,17 +22,17 @@ article.h-entry
       =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
 
   - else
-    - if post.title
-      h1.p-name = post.title
-
     - if post.main_medium.present?
       = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
 
-    .e-content class="#{'p-name' unless post.title}" == post.rendered_body
+    - if post.title
+      h1.p-name = post.title
 
-    = link_to url_for(post), class: 'u-url'
-      | Published
-      time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
+    .article__heading
+      = link_to url_for(post), class: 'u-url'
+        time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at.to_date, format: :long)
+
+    .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
     - if post.likes.any?
       section

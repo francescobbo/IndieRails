@@ -5,9 +5,41 @@ blockquote {
   box-shadow: 2px 3px 5px rgba(black, .13);
 }
 
+article.h-entry {
+  h1.p-name {
+    font-size: 2.5em;
+    text-align: center;
+  }
+}
+
+.article__heading {
+  text-align: center;
+  margin-bottom: 2.5em;
+
+  a {
+    text-decoration: none;
+    color: #888;
+  }
+}
+
 .e-content {
   font-family: Merriweather;
+  font-size: 1.1em;
   line-height: 1.618;
+
+  p, h2, h3 {
+    margin-bottom: 24px;
+  }
+
+  h2, h3, h4 {
+    &:not(:first-child) {
+      margin-top: 56px;
+    }
+  }
+
+  a {
+    font-weight: bold;
+  }
 
   pre.highlight {
     padding: 8px 24px;
