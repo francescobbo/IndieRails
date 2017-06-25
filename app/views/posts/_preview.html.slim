@@ -16,13 +16,21 @@ article.h-entry.post--preview
           =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
         div
           == post.rendered_body
-    - else
-      - if post.title.present?
-        h1.p-name
-          = link_to post
-            = post.title
+    - elsif post.note?
+      .e-content class="#{'p-name' unless post.title}"
+        == post.rendered_body
+    - elsif post.article?
+      - if post.main_medium.present?
+        = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
+
+      h1.p-name
+        = link_to post
+          = post.title
       
-      .e-content class="#{'p-name' unless post.title}" == post.rendered_body
+      .e-content class="#{'p-name' unless post.title}"
+        == post.preview
+        div
+          = link_to 'Read more...', url_for(post), class: 'u-url read-more-button'
 
     = link_to url_for(post), class: 'u-url'
       | Published on
