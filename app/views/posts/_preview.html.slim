@@ -19,6 +19,10 @@ article.h-entry.post--preview
     - elsif post.note?
       .e-content class="#{'p-name' unless post.title}"
         == post.rendered_body
+
+      = link_to url_for(post), class: 'u-url'
+        | Published on
+        time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
     - elsif post.article?
       - if post.main_medium.present?
         = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
@@ -35,7 +39,3 @@ article.h-entry.post--preview
         == post.preview
         div
           = link_to 'Read more...', url_for(post), class: 'u-url read-more-button'
-
-    = link_to url_for(post), class: 'u-url'
-      | Published on
-      time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
