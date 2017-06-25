@@ -27,6 +27,10 @@ article.h-entry.post--preview
         = link_to post
           = post.title
       
+      .article__heading
+        = link_to url_for(post), class: 'u-url'
+          time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at.to_date, format: :long)
+      
       .e-content class="#{'p-name' unless post.title}"
         == post.preview
         div
