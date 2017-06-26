@@ -34,7 +34,7 @@ article.h-entry
 
     .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
-    = render 'social'
+    = render 'social', post: post
 
     - if post.likes.any?
       section
