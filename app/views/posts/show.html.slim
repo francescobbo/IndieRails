@@ -34,6 +34,8 @@ article.h-entry
 
     .e-content class="#{'p-name' unless post.title}" == post.rendered_body
 
+    = render 'social'
+
     - if post.likes.any?
       section
         h3 = "This post received #{pluralize(post.likes.count, 'like')}"

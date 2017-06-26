@@ -31,6 +31,12 @@ module.exports = {
     publicPath: output.publicPath
   },
 
+  externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "zepto": "Zepto"
+  },
+
   module: {
     rules: sync(join(loadersDir, '*.js')).map(loader => require(loader))
   },

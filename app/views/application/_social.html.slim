@@ -1,0 +1,20 @@
+.share-button.share-button--twitter
+  = link_to "whatsapp://send?text=The text to share!", data: { 'ga-social': 'Twitter/share' }
+    i.fa.fa-twitter
+
+.share-button.share-button--linkedin
+  = link_to "whatsapp://send?text=The text to share!", data: { 'ga-social': 'LinkedIn/share' }
+    i.fa.fa-linkedin
+
+.share-button.share-button--hn
+  = link_to "whatsapp://send?text=The text to share!", data: { 'ga-social': 'HackerNews/vote' }
+    i.fa.fa-hacker-news
+
+.share-button.share-button--facebook
+  = link_to "whatsapp://send?text=The text to share!", data: { 'ga-social': 'Facebook/share' }
+    i.fa.fa-facebook
+
+- if request.user_agent =~ /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/
+  .share-button.share-button--whatsapp
+    = link_to "whatsapp://send?text=The text to share!", data: { 'ga-social': 'WhatsApp/share' }
+      i.fa.fa-whatsapp
