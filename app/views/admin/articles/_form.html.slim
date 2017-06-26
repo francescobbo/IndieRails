@@ -3,6 +3,10 @@
     = f.text_field :title, placeholder: 'What do you want to talk about?', id: 'article_title_input'
 
   .admin-field
+    = f.label :meta_description
+    = f.text_field :meta_description
+
+  .admin-field
     = f.label :main_medium_id, 'Choose a cover image:'
     = f.select :main_medium_id, Medium.all.map { |m| [m.default_alt, m.id] }, include_blank: true
 

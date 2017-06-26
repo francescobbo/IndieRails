@@ -86,7 +86,7 @@ module Admin
     private
 
     def article_params
-      params.require(:article).permit(:title, :body, :draft, :main_medium_id, main_medium_attributes: [:file])
+      params.require(:article).permit(:title, :meta_description, :body, :draft, :main_medium_id, main_medium_attributes: [:file])
     end
   end
 end

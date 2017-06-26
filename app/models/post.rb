@@ -54,7 +54,7 @@ class Post < ApplicationRecord
   end
 
   def meta_description
-    ActionController::Base.helpers.truncate(text_body, separator: ' ', omission: ' ', length: 150)
+    self[:meta_description].presence || ActionController::Base.helpers.truncate(text_body, separator: ' ', omission: ' ', length: 150)
   end
 
   def draft=(value)

@@ -4,6 +4,11 @@
 
 = link_to 'Edit', edit_admin_article_path(article)
 
+- if article.meta_description.present?
+  div
+    b Meta Description:
+    =< article.meta_description    
+
 - if article.main_medium
   = image_tag article.main_medium.file.url(:thumb)
 
