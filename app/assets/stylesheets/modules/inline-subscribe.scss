@@ -1,0 +1,71 @@
+.inline-subscribe {
+  &__box {
+    padding: 1.5em 0;
+    margin: 1.5em 0;
+    border-top: 3px dashed #ccc;
+    border-bottom: 3px dashed #ccc;
+
+    b {
+      display: block;
+      font-size: 1.3em;
+      font-weight: 500;
+      font-family: Roboto;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    small {
+      display: block;
+      margin-top: 1em;
+      font-size: .9em;
+      color: #ff6e40;
+      text-align: center;
+    }
+  }
+
+  &__row {
+    @media (min-width: 600px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  input[type=text], input[type=email] {
+    display: block;
+    margin: 0 auto 1em;
+    line-height: 40px;
+    padding: 0 8px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+
+    @media (min-width: 600px) {
+      width: 40%;
+      margin: 0 1em 0
+    }
+
+    &:focus {
+      border-color: #ff6e40;
+    }
+  }
+
+  &__submit {
+    background: #ff6e40;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+    line-height: 48px;
+    margin: 1em auto 0;
+    display: block;
+    font-weight: 500;
+    font-family: Roboto;
+    font-size: 18px;
+    width: 100%;
+
+    @media (min-width: 600px) {
+      width: 60%;
+    }
+  }
+}

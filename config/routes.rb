@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, defaults: { format: :xml }
   get 'feed', to: 'feeds#show', as: :feed, defaults: { format: :xml }
 
+  post 'subscribe', to: 'newsletter#create'
+
   resources :webmentions, only: %i[create show]
 
   resources :posts, path: '/', only: :show
