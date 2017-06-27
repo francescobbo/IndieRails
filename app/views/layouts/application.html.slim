@@ -1,6 +1,10 @@
 doctype html
 html
   head
+    link rel="preconnect" href="https://assets.francescoboffa.com"
+    link rel="preconnect" href="https://www.google-analytics.com"
+    link rel="dns-prefetch" href="https://media.francescoboffa.com"
+  
     = display_meta_tags(default_meta_tags)
 
     - if Rails.application.assets && Rails.application.assets['style']
@@ -8,9 +12,6 @@ html
     - else
       style == File.read "#{Rails.root}/public#{stylesheet_path('style', host: '').gsub(/^https:/, '')}"
 
-    /= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    /= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'    
-    
     link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=alj8X5eevo"
     link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=alj8X5eevo"
     link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=alj8X5eevo"
