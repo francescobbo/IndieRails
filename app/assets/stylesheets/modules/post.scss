@@ -56,6 +56,11 @@ article.h-entry {
     overflow-x: auto;
   }
 
+  p code {
+    display: block;
+    overflow-x: auto;
+  }
+
   table {
     text-align: center;
     border-collapse: collapse;
