@@ -61,8 +61,8 @@ module ApplicationHelper
   end
 
   def embed_signup(body)
-    if body =~ /\[inline-signup\]/
-      body.gsub(/\[inline-signup\]/, render(partial: 'subscribe_inline'))
+    if body =~ /<p>\[inline-signup\]<\/p>/
+      body.gsub(/<p>\[inline-signup\]<\/p>/, render(partial: 'subscribe_inline'))
     else
       body
     end
