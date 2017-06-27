@@ -1,11 +1,14 @@
-.inline-subscribe__box
-  b
-    | You made it this far! If you are enjoying the article, make sure to not miss out the next!
+- unless cookies[:subscribed]
+  .inline-subscribe__box
+    b
+      | You made it this far! If you are enjoying the article, make sure to not miss out the next!
 
-  = form_with url: subscribe_path, class: 'inline-subscribe' do |f|
-    .inline-subscribe__row
-      = f.text_field :name, required: true, placeholder: 'Your First Name'
-      = f.email_field :email, required: true, placeholder: 'Your Email Address'
-    = f.submit 'Sign Up*', class: 'inline-subscribe__submit'
+    .inline-subscribe__error
 
-  small * I promise to keep your email safe and to not send spam
+    = form_with url: subscribe_path, class: 'inline-subscribe' do |f|
+      .inline-subscribe__row
+        = f.text_field :name, required: true, placeholder: 'Your First Name'
+        = f.email_field :email, required: true, placeholder: 'Your Email Address'
+      = f.submit 'Sign Up*', class: 'inline-subscribe__submit'
+
+    small * I promise to keep your email safe and to not send spam
