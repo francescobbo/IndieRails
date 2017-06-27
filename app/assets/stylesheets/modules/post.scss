@@ -57,8 +57,7 @@ article.h-entry {
   }
 
   p code {
-    display: block;
-    overflow-x: auto;
+    word-break: break-all;
   }
 
   table {
