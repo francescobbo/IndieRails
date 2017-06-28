@@ -12,9 +12,7 @@ function refreshArticleStats() {
                   .replace(/\[([^\]]*)\]\([^\)]*\)/g, '$1')
                   .replace(/[\*_~#]/g, '')
 
-  console.log(plain)
-
-  $('.article__stats').text("Words: " + countWords(plain));  
+  $('.article__stats').text("Words: " + countWords(plain));
 }
 
 $(() => {
