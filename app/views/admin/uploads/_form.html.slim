@@ -1,0 +1,7 @@
+= form_with model: [:admin, upload], local: true do |f|
+  .admin-field
+    = f.label :file
+    = f.file_field :file
+  
+  .admin-field
+    = f.submit

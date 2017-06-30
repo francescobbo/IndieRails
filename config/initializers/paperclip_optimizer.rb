@@ -22,6 +22,8 @@ Paperclip::PaperclipOptimizer.default_options = {
   svgo: false
 }
 
+Paperclip::Attachment.default_options[:validate_media_type] = false
+
 # All available image_optim options. See https://github.com/toy/image_optim for more information
 
 # Paperclip::PaperclipOptimizer.default_options = {

@@ -1,0 +1,12 @@
+- content_for :page_title
+  | All Uploads
+
+= link_to 'New', [:new, :admin, :upload]
+
+table
+  - uploads.each do |upload|
+    tr
+      td
+        = upload.file.url(:original)
+      td
+        = button_to 'Delete', [:admin, upload], method: :delete, data: { confirm: 'Are you sure?' }

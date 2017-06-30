@@ -30,6 +30,18 @@
       i.fa.fa-fw.fa-lg.fa-camera
       | New Medium
 
+  .navigation-drawer__subheader Uploads
+  
+  .navigation-drawer__list-item
+    = link_to [:admin, :uploads], class: 'navigation-drawer__item-link'
+      i.fa.fa-fw.fa-lg.fa-list
+      | All Uploads
+
+  .navigation-drawer__list-item
+    = link_to [:new, :admin, :upload], class: 'navigation-drawer__item-link'
+      i.fa.fa-fw.fa-lg.fa-upload
+      | New Upload
+
   .navigation-drawer__subheader Notes
   
   .navigation-drawer__list-item

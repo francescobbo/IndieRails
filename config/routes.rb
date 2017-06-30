@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
 
     resources :media, only: %i[index new create destroy]
+    resources :uploads, only: %i[index new create destroy]
 
     get '(*any)', to: 'admin#render404'
   end
