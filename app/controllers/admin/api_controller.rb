@@ -4,7 +4,23 @@ module Admin
     before_action :authenticate
 
     def update_location
-      render json: params
+      head :accepted
+
+      raw = Weather.for_coords(params[:latitude], params[:longitude]) rescue nil
+      if raw
+        LocationUpdate.create({
+          latitude: params[:latitude],
+          longitude: params[:longitude],
+          weather: raw[:weather],
+          wind: raw[:wind],
+          temperature: raw[:main][:temp] - 273.15,
+          humidity: raw[:main][:humidity],
+          sunrise: Time.at(raw[:sys][:sunrise]),
+          sunset: Time.at(raw[:sys][:sunset])
+        })
+      else
+        LocationUpdate.create(latitude: params[:latitude], longitude: params[:longitude])
+      end
     end
 
     private

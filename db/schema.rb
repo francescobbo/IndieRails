@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630135934) do
+ActiveRecord::Schema.define(version: 20170701000817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20170630135934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "location_updates", force: :cascade do |t|
+    t.decimal "latitude", null: false
+    t.decimal "longitude", null: false
+    t.time "sunrise"
+    t.time "sunset"
+    t.float "temperature"
+    t.json "weather"
+    t.json "wind"
+    t.integer "humidity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "media", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
