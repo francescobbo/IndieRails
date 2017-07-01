@@ -1,0 +1,52 @@
+.now {
+  &__title {
+    color: #ff6e40;
+  }
+  
+  &__location {
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  &__location-flag {
+    font-size: 4em;
+    margin-right: .25em;
+  }
+
+  &__city {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  &__city-state {
+    font-size: 0.65em;
+  }
+
+  &__weather {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  &__weather-cell {
+    flex: 1;
+    min-width: 33.3333%;
+    margin-bottom: 1em;
+
+    @media (min-width: 800px) {
+      min-width: auto;
+    }
+  }
+
+  &__weather-value {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    display: block;
+    font-weight: normal;
+  }
+}

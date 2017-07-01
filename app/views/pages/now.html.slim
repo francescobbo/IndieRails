@@ -1,0 +1,89 @@
+= stylesheet_link_tag 'weather-icons'
+
+h1.now__title Where can you find me right now?
+
+- flags = { \
+  'Italy' => '🇮🇹', \
+  'United Kingdom' => '🇬🇧', \
+  'Greece' => '🇬🇷', \
+  'Spain' => '🇪🇸', \
+  'Poland' => '🇵🇱', \
+  'United States' => '🇺🇸', \
+}
+
+.now__location
+  .now__location-flag = flags[address[:country]]
+  .now__city
+    = address[:city]
+    .now__city-state
+      = "#{address[:region]}, #{address[:country]}"
+
+
+- weather_icon_map = { \
+  '01d' => 'wi-day-sunny', \
+  '02d' => 'wi-day-cloudy', \
+  '03d' => 'wi-cloud', \
+  '04d' => 'wi-cloudy', \
+  '09d' => 'wi-showers', \
+  '10d' => 'wi-day-showers', \
+  '11d' => 'wi-thunderstorm', \
+  '13d' => 'wi-snow', \
+  \
+  '01n' => 'wi-night-clear', \
+  '02n' => 'wi-night-cloudy', \
+  '03n' => 'wi-cloud', \
+  '04n' => 'wi-cloudy', \
+  '09n' => 'wi-showers', \
+  '10n' => 'wi-night-showers', \
+  '11n' => 'wi-thunderstorm', \
+  '13n' => 'wi-snow' \
+}
+
+.now__weather
+  .now__weather-cell
+    .now__weather-value
+      i.wi class=weather_icon_map[weather.weather[0]['icon']]
+    b.now__label = weather.weather[0]['description'].titleize
+
+  .now__weather-cell
+    .now__weather-value
+      = weather.temperature
+      | ° C
+    b.now__label Temperature
+
+  .now__weather-cell
+    .now__weather-value
+      = weather.humidity
+      | %
+    b.now__label Humidity
+
+  .now__weather-cell
+    .now__weather-value
+      i.wi.wi-wind style="transform: rotate(#{weather.wind['deg']}deg)"
+    b.now__label Wind: #{weather.wind['speed']} km/h
+
+  .now__weather-cell
+    .now__weather-value
+      = weather.sunrise.strftime('%H:%M')
+    b.now__label Sunrise
+  .now__weather-cell
+    .now__weather-value
+      = weather.sunset.strftime('%H:%M')
+    b.now__label Sunset
+
+#map style="height: 300px"
+
+javascript:
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: { lat: #{location.latitude}, lng: #{location.longitude} }
+    });
+    
+    var marker = new google.maps.Marker({
+      position: { lat: #{location.latitude}, lng: #{location.longitude} },
+      map: map
+    });
+  }
+
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_web_key}&callback=initMap", async: true
