@@ -10,6 +10,8 @@ module Admin
         latitude: params[:latitude],
         longitude: params[:longitude],
       })
+
+      UpdateWeatherJob.perform_async
     end
 
     private

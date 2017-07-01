@@ -1,8 +1,12 @@
-class PingCrawlersJob < ApplicationJob
+class UpdateWeatherJob < ApplicationJob
   queue_as :default
 
   def perform
+    location = LocationUpdate.order(created_at: :desc).first
+    return unless location
+
     weather = WeatherUpdate.first || WeatherUpdate.new
+    raw = Weather.for_coords(location.latitude, location.longitude)
 
     weather.update_attributes({
       weather: raw[:weather],
