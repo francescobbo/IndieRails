@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701000817) do
+ActiveRecord::Schema.define(version: 20170701123916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 20170701000817) do
   create_table "location_updates", force: :cascade do |t|
     t.decimal "latitude", null: false
     t.decimal "longitude", null: false
-    t.time "sunrise"
-    t.time "sunset"
-    t.float "temperature"
-    t.json "weather"
-    t.json "wind"
-    t.integer "humidity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,6 +79,17 @@ ActiveRecord::Schema.define(version: 20170701000817) do
     t.string "file_content_type"
     t.integer "file_file_size"
     t.datetime "file_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weather_updates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.time "sunrise"
+    t.time "sunset"
+    t.float "temperature"
+    t.json "weather", default: {}
+    t.json "wind", default: {}
+    t.integer "humidity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
