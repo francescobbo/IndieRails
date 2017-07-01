@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     post '/signin', to: 'sessions#create'
     delete '/signout', to: 'sessions#delete'
 
+    scope :api, controller: :api, defaults: { format: :json } do
+      post '/update_location', action: :update_location
+    end
+
     resources :articles do
       post '/undestroy', on: :member, action: :undestroy
     end
