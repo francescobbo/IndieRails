@@ -13,11 +13,39 @@
   &__logo {
     height: 16px;
     padding: 12px 0;
-    display: block;
   }
 
   &__container {
     max-width: 860px;
     margin: 0 auto;
+    display: flex;
+  }
+
+  &__now {
+    display: inline-block;
+    margin: 5px 0 0 1.5em;
+
+    @media (max-width: 359px) {
+      display: none;
+    }
+  }
+
+  &__now-link {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.8em;
+
+    padding: 8px 12px;
+    border: 2px solid #ff6e40;
+    border-radius: 3px;
+
+    img {
+      height: 16px;
+      vertical-align: sub;
+      margin-right: 8px;
+    }
   }
 }

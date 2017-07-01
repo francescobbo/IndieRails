@@ -2,6 +2,8 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   def now
+    set_meta_tags(title: 'Live Status Update')
+
     location = LocationUpdate.order(created_at: :desc).first
     address = reverse_geocode(location)[:address_components]
 
