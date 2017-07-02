@@ -25,7 +25,8 @@ article.h-entry.post--preview
         time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
     - elsif post.article?
       - if post.main_medium.present?
-        = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
+        = link_to post
+          = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
 
       h1.p-name
         = link_to post
