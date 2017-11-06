@@ -23,13 +23,17 @@ article.h-entry {
 }
 
 .e-content {
-  font-size: 1.3em;
+  font-size: 1.15em;
   line-height: 1.618;
 
   font-family: "Lucida Serif", Lucida, "Liberation Serif", Georgia, serif;
 
   @media (-webkit-min-device-pixel-ratio: 2) {
     font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, "Apple Garamond", Georgia, serif;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 1.3em;
   }
 
   h2 {
