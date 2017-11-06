@@ -77,9 +77,9 @@ h2 What am I up to?
 
 ul
   li I'm working at CurrencyCloud in London
-  li I'm #{link_to 'studying', 'https://francescoboffa.com/i-will-study-to-get-aws-certified'} to become and AWS Certified Solution Architect - Associate...
+  li I'm #{link_to 'studying', 'https://francescoboffa.com/i-will-study-to-get-aws-certified'} to be an AWS Certified Solution Architect - Associate...
   li ...and in the meantime I'm writing study notes about it
-  li I'm reading the #{link_to '4 Hours Work Week by Tim Ferris', 'https://www.amazon.co.uk/4-Hour-Work-Week-Escape-Anywhere/dp/0091929113'}
+  li I'm reading #{link_to 'Origin by Dan Brown', 'https://www.amazon.co.uk/Origin-Robert-Langdon-Book-5/dp/0593078756'}
 
 javascript:
   function initMap() {
@@ -87,7 +87,7 @@ javascript:
       zoom: 13,
       center: { lat: #{location.latitude}, lng: #{location.longitude} }
     });
-    
+
     var marker = new google.maps.Marker({
       position: { lat: #{location.latitude}, lng: #{location.longitude} },
       map: map
