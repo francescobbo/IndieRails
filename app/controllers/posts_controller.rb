@@ -26,6 +26,8 @@ class PostsController < ApplicationController
         set_meta_tags(social_metas(post))
       end
 
+      set_meta_tags(language_metas(post))
+
       render locals: {
         post: post
       }
@@ -59,7 +61,7 @@ class PostsController < ApplicationController
         image: post.main_medium&.file&.url(:large),
         url: article_url(post),
         site_name: 'Francesco Boffa',
-        locale: 'en_US',
+        locale: I18n.locale == :it ? 'it_IT' : 'en_US',
         type: 'article'
       },
       article: {
@@ -68,5 +70,13 @@ class PostsController < ApplicationController
         modified_time: post.updated_at.iso8601
       }
     }
+  end
+
+  def language_metas(post)
+    alternate = {}
+    alternate['it'] = post_url(:it, post.slug_it) if post.slug_it
+    alternate['en'] = post_url(nil, post.slug_en) if post.slug_en
+
+    { alternate: alternate }
   end
 end

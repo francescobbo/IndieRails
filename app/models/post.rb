@@ -77,11 +77,11 @@ class Post < ApplicationRecord
   end
 
   def meta_description
-    self[:meta_description].presence || ActionController::Base.helpers.truncate(text_body, separator: ' ', omission: ' ', length: 150)
-  end
-
-  def meta_description_it
-    self[:meta_description_it].presence || ActionController::Base.helpers.truncate(text_body_it, separator: ' ', omission: ' ', length: 150)
+    if I18n.locale == :it
+      self[:meta_description_it].presence || ActionController::Base.helpers.truncate(text_body_it, separator: ' ', omission: ' ', length: 150)
+    else
+      self[:meta_description].presence || ActionController::Base.helpers.truncate(text_body, separator: ' ', omission: ' ', length: 150)
+    end
   end
 
   def body
