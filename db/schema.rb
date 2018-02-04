@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701123916) do
+ActiveRecord::Schema.define(version: 20180204002006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170701123916) do
   end
 
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "slug"
+    t.string "slug_en"
     t.boolean "deleted", default: false, null: false
     t.text "title"
     t.text "body"
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20170701123916) do
     t.text "reply_to"
     t.string "type", default: "Article", null: false
     t.text "meta_description"
+    t.string "slug_it"
+    t.string "title_it"
+    t.text "body_it"
+    t.text "rendered_body_it"
+    t.integer "main_medium_it_id"
+    t.string "meta_description_it"
   end
 
   create_table "subscribers", force: :cascade do |t|

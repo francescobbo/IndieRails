@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :webmention do
     outbound false
     source 'https://someweb.site/123'

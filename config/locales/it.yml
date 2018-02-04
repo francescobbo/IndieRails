@@ -1,0 +1,6 @@
+it:
+  date:
+    formats:
+      long: "%d %B %Y"
+
+    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]

@@ -9,7 +9,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#show' do
-    let(:post) { FactoryGirl.create(:post) }
+    let(:post) { FactoryBot.create(:post) }
 
     context 'when the ID is a slug for a post' do
       it 'responds with 200 (OK)' do
@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'when the ID a slug for a deleted post' do
-      let(:post) { FactoryGirl.create(:post, deleted: true) }
+      let(:post) { FactoryBot.create(:post, deleted: true) }
 
       it 'responds with 410 (Gone)' do
         get :show, params: { id: post.slug }

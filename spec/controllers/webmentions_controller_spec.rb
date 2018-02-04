@@ -20,7 +20,7 @@ RSpec.describe WebmentionsController, type: :controller do
   describe '#show' do
     context 'when the ID references a webmention' do
       context 'when the status is created' do
-        let(:webmention) { FactoryGirl.create(:webmention, status: :created) }
+        let(:webmention) { FactoryBot.create(:webmention, status: :created) }
 
         it 'responds with Created (201)' do
           get :show, params: { id: webmention.id }
@@ -29,7 +29,7 @@ RSpec.describe WebmentionsController, type: :controller do
       end
 
       context 'when the status is published' do
-        let(:webmention) { FactoryGirl.create(:webmention, status: :published) }
+        let(:webmention) { FactoryBot.create(:webmention, status: :published) }
 
         it 'responds with OK (200)' do
           get :show, params: { id: webmention.id }
@@ -38,7 +38,7 @@ RSpec.describe WebmentionsController, type: :controller do
       end
 
       context 'when the status is rejected' do
-        let(:webmention) { FactoryGirl.create(:webmention, status: :rejected) }
+        let(:webmention) { FactoryBot.create(:webmention, status: :rejected) }
 
         it 'responds with Unprocessable Entity (422)' do
           get :show, params: { id: webmention.id }
@@ -47,7 +47,7 @@ RSpec.describe WebmentionsController, type: :controller do
       end
 
       context 'when the status is removed' do
-        let(:webmention) { FactoryGirl.create(:webmention, status: :removed) }
+        let(:webmention) { FactoryBot.create(:webmention, status: :removed) }
 
         it 'responds with Gone (410)' do
           get :show, params: { id: webmention.id }
@@ -56,7 +56,7 @@ RSpec.describe WebmentionsController, type: :controller do
       end
 
       context 'when the status is _screwed_' do
-        let(:webmention) { FactoryGirl.create(:webmention, status: :created) }
+        let(:webmention) { FactoryBot.create(:webmention, status: :created) }
 
         it 'responds with Internal Server Error (500)' do
           allow_any_instance_of(Webmention).to receive(:status_response) { nil }

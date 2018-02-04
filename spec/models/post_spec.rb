@@ -10,12 +10,12 @@ RSpec.describe Post, type: :model do
   end
 
   context 'when the kind is note' do
-    subject { FactoryGirl.build(:post, type: 'Note') }
+    subject { FactoryBot.build(:post, type: 'Note') }
     it { is_expected.to validate_presence_of(:body) }
   end
 
   context 'when the kind is article' do
-    subject { FactoryGirl.build(:post, type: 'Article') }
+    subject { FactoryBot.build(:post, type: 'Article') }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:body) }
   end

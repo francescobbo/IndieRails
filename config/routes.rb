@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'posts#index'
+  get '/:locale', to: 'posts#index', constraints: { locale: :it }
 
   namespace :admin do
     get '/signin', to: 'sessions#new'
@@ -31,11 +32,11 @@ Rails.application.routes.draw do
 
   get '/now', to: 'pages#now'
 
-  resources :posts, path: '/', only: :show
+  resources :posts, path: '(:locale)', only: :show, constraints: { locale: :it }
 
   [:article, :note, :like, :reply].each do |kind|
     direct kind do |post|
-      post_url(post)
+      post_url(I18n.locale == :it ? 'it' : nil, post)
     end
   end
 end

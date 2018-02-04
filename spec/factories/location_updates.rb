@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :location_update do
     latitude "9.99"
     longitude "9.99"

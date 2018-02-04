@@ -2,6 +2,17 @@ class PostsController < ApplicationController
   def index
     set_meta_tags(title: 'Home Page',
                   description: 'My ramblings about AWS, Ruby and Tech in general. I\'m getting AWS certified!')
+
+    articles = Article.published.order(published_at: :desc)
+    if I18n.locale == :it
+      articles = articles.where.not(title_it: nil)
+    else
+      articles = articles.where.not(title: nil)
+    end
+
+    render locals: {
+      articles: articles
+    }
   end
 
   def show

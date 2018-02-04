@@ -19,8 +19,8 @@
       i.fa.fa-fw.fa-facebook-square
       .share-button__name Facebook
 
-  /  - if request.user_agent =~ /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/
-  .share-button.share-button--whatsapp
-    = link_to "whatsapp://send?text=#{post.title} #{request.original_url}", data: { 'ga-social': 'WhatsApp/share' }, target: '_blank', title: 'Share on Whatsapp'
-      i.fa.fa-fw.fa-whatsapp
-      .share-button__name Whatsapp
+  - if request.user_agent =~ /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/
+    .share-button.share-button--whatsapp
+      = link_to "whatsapp://send?text=#{post.title} #{request.original_url}", data: { 'ga-social': 'WhatsApp/share' }, target: '_blank', title: 'Share on Whatsapp'
+        i.fa.fa-fw.fa-whatsapp
+        .share-button__name Whatsapp
