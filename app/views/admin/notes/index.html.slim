@@ -8,12 +8,12 @@ table
       th Abstract
       th Published at
       th
-  
+
   tbody
     - notes.each do |note|
       tr
         td
-          = link_to 'View online', post_path(note)
+          = link_to 'View online', post_path(nil, note)
         td
           = truncate(note.body)
         td

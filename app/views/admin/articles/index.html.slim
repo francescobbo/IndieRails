@@ -8,7 +8,7 @@ table
       th Abstract
       th Published at
       th
-  
+
   tbody
     - articles.each do |article|
       tr
@@ -16,7 +16,7 @@ table
           = link_to admin_article_path(article)
             = article.title
           div
-            = link_to 'View online', post_path(article)
+            = link_to 'View online', post_path(nil, article)
         td
           = truncate(article.body)
         td
