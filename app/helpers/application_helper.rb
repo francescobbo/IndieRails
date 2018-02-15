@@ -1,13 +1,4 @@
 module ApplicationHelper
-  def default_meta_tags
-    {
-      viewport: 'width=device-width,minimum-scale=1,initial-scale=1',
-      site: Settings.site_name,
-      reverse: true,
-      separator: '|'
-    }
-  end
-
   def blog_jsonld
     {
       "@context": "http://schema.org",

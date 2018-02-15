@@ -4,19 +4,19 @@ article.h-entry
     = render 'photo_post', post: post
   - elsif post.like?
     h1.p-name Francesco Boffa liked on #{l(post.published_at, format: :short)}
-    
+
     - if post.body.present?
       .e-content == post.rendered_body
-    
+
     p
       | Liked
       =< link_to post.reply_to, post.reply_to, class: 'u-like-of'
 
   - elsif post.reply?
     h1.p-name Francesco Boffa replied on #{l(post.published_at, format: :short)}
-    
+
     .e-content == post.rendered_body
-    
+
     p
       | In reply to
       =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
@@ -39,13 +39,10 @@ article.h-entry
     - if post.likes.any?
       section
         h3 = "This post received #{pluralize(post.likes.count, 'like')}"
-        
+
         .facepile
           - post.likes.each do |like|
             = link_to like.author_url, target: '_blank', class: 'facepile__link'
               = image_tag like.author_image, alt: like.author_name, title: like.author_name, class: 'facepile__image'
-    
-    script type="application/ld+json"
-      == post_jsonld(post).to_json
 
   = render 'disqus', post: post

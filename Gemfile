@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.1.5.rc1'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '0.21'
 
 gem 'puma', '~> 3.11'
 

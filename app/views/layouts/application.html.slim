@@ -5,7 +5,7 @@ html
     link rel="preconnect" href="https://www.google-analytics.com"
     link rel="dns-prefetch" href="https://media.francescoboffa.com"
 
-    = display_meta_tags(default_meta_tags)
+    = display_meta_tags
 
     - if Rails.application.assets && Rails.application.assets['style']
       style == Rails.application.assets['style'].to_s
@@ -38,4 +38,5 @@ html
     = render 'blog_jsonld'
 
     = javascript_pack_tag 'app', async: true
+    = render 'jsonld'
     = render 'analytics'

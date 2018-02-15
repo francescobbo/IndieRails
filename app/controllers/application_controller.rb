@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include SeoConcern
+
   protect_from_forgery with: :exception
 
   after_action :add_webmention_endpoint

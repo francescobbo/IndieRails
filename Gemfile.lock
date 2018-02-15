@@ -181,7 +181,7 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
-    pg (1.0.0)
+    pg (0.21.0)
     powerpack (0.1.1)
     progress (3.4.0)
     public_suffix (3.0.1)
@@ -289,9 +289,6 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
-    turbolinks (5.1.0)
-      turbolinks-source (~> 5.1)
-    turbolinks-source (5.1.0)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uglifier (4.1.5)
@@ -337,7 +334,7 @@ DEPENDENCIES
   mini_racer
   paperclip
   paperclip-optimizer
-  pg
+  pg (= 0.21)
   puma (~> 3.11)
   rails (~> 5.1.5.rc1)
   redcarpet
@@ -352,7 +349,6 @@ DEPENDENCIES
   sprockets
   sprockets-es6
   timecop
-  turbolinks (~> 5)
   tzinfo-data
   uglifier
   vcr

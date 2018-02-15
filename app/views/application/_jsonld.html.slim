@@ -1,0 +1,2 @@
+- jsonld_items.each do |data|
+  script type='application/ld+json' == data.is_a?(String) ? data : data.to_json
