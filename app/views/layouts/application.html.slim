@@ -4,7 +4,7 @@ html
     link rel="preconnect" href="https://assets.francescoboffa.com"
     link rel="preconnect" href="https://www.google-analytics.com"
     link rel="dns-prefetch" href="https://media.francescoboffa.com"
-  
+
     = display_meta_tags(default_meta_tags)
 
     - if Rails.application.assets && Rails.application.assets['style']
@@ -18,16 +18,16 @@ html
     link rel="manifest" href="/manifest.json?v=alj8X5eevo"
     link rel="mask-icon" href="/safari-pinned-tab.svg?v=alj8X5eevo" color="#5bbad5"
     link rel="shortcut icon" href="/favicon.ico?v=alj8X5eevo"
-    meta name="apple-mobile-web-app-title" content="Francesco Boffa"
-    meta name="application-name" content="Francesco Boffa"
+    meta name="apple-mobile-web-app-title" content=Settings.site_name
+    meta name="application-name" content=Settings.site_name
     meta name="theme-color" content="#009688"
-    link rel="alternate" type="application/rss+xml" title="Francesco Boffa's RSS Feed" href=feed_url
+    link rel="alternate" type="application/rss+xml" title="#{Settings.site_name} RSS Feed" href=feed_url
 
     = csrf_meta_tags
-    
+
     link rel="pgpkey" href="/pgpkey.pub"
     link rel="authorization_endpoint" href="https://indieauth.com/auth"
-  
+
   body
     = render 'header'
 
@@ -36,6 +36,6 @@ html
 
     = render 'footer'
     = render 'blog_jsonld'
-    
+
     = javascript_pack_tag 'app', async: true
     = render 'analytics'

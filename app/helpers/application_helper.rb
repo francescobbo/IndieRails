@@ -2,7 +2,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       viewport: 'width=device-width,minimum-scale=1,initial-scale=1',
-      site: 'Francesco Boffa',
+      site: Settings.site_name,
       reverse: true,
       separator: '|'
     }
@@ -12,7 +12,7 @@ module ApplicationHelper
     {
       "@context": "http://schema.org",
       "@type": "Blog",
-      "name": "Francesco Boffa",
+      "name": Settings.site_name,
       "url": "https://francescoboffa.com",
       "description": "My ramblings about AWS, Ruby and Tech in general. I'm getting AWS certified!",
       "sameAs": [
@@ -39,7 +39,7 @@ module ApplicationHelper
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Francesco Boffa",
+        "name": Settings.site_name,
         "logo": {
           "@type": "imageObject",
           "url": asset_url('logo.png')

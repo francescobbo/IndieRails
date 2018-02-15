@@ -64,7 +64,7 @@ class WebmentionClient
   end
 
   def user_agent
-    'Webmention - Francesco Boffa'
+    "Webmention - #{Settings.site_name}"
   end
 
   def endpoint_from_headers(response)

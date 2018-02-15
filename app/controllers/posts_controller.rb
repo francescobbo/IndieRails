@@ -60,7 +60,7 @@ class PostsController < ApplicationController
         description: post.meta_description,
         image: post.main_medium&.file&.url(:large),
         url: article_url(post),
-        site_name: 'Francesco Boffa',
+        site_name: Settings.site_name,
         locale: I18n.locale == :it ? 'it_IT' : 'en_US',
         type: 'article'
       },
