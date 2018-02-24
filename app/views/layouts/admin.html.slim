@@ -1,8 +1,8 @@
 doctype html
 html lang='en'
   head
-    = display_meta_tags(default_meta_tags)
-    
+    = display_meta_tags
+
     = csrf_meta_tags
     = stylesheet_link_tag    'admin'
     = javascript_include_tag 'admin'
@@ -10,12 +10,12 @@ html lang='en'
 
   body
     = render 'navigation_drawer'
-    
+
     .header
       .fa.fa-bars data-behavior="open-navigation-drawer"
-      
+
       h1 = content_for :page_title
-      
+
       = link_to admin_signout_path, method: :delete
         .fa.fa-power-off
 

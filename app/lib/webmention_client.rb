@@ -4,15 +4,34 @@ require 'active_support/core_ext'
 require 'nokogiri'
 
 class WebmentionClient
+  ACCEPTABLE_RESPONSES = 200..202.freeze
+
   class UnexpectedResponse < StandardError; end
 
   def deliver(source, target)
-    uri = discover(target)
-    return unless uri
+    webmention_uri = discover(target)
+    return unless webmention_uri
 
-    request = Net::HTTP::Post.new(uri.request_uri, 'User-Agent' => user_agent)
+    response = perform(webmention_uri, source, target)
+    return unless response
+
+    response_code = response.code.to_i
+    return unless response_code.in?(ACCEPTABLE_RESPONSES)
+
+    {
+      status: response.code.to_i == 200 ? :created : :accepted,
+      status_endpoint: response.code.to_i == 201 ? response['location'] : nil
+    }
+  end
+
+  def perform(webmention_uri, source, target)
+    request = Net::HTTP::Post.new(webmention_uri.request_uri, 'User-Agent' => user_agent)
     request.set_form_data(source: source, target: target)
-    client(uri).request(request)
+    response = client(uri).request(request)
+
+  rescue StandardError
+    # Network error?
+    nil
   end
 
   def discover(url)
@@ -64,7 +83,7 @@ class WebmentionClient
   end
 
   def user_agent
-    "Webmention - #{Settings.site_name}"
+    "Webmention - #{Settings.host}"
   end
 
   def endpoint_from_headers(response)

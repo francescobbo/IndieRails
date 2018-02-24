@@ -1,23 +1,17 @@
 class Post < ApplicationRecord
   extend FriendlyId
 
+  include Crawlable, Webmentions
+
   # enum kind: %i[note article reply rsvp like checkin event bookmark repost jam video scrobble review collection
   #               venue read comics audio exercise food quotation recipe chicken]
 
   friendly_id :title, use: [:SimpleI18n, :slugged]
 
-  has_many :webmentions
-  has_many :likes, -> { like }, class_name: 'Webmention'
   belongs_to :main_medium, optional: true, class_name: 'Medium'
   accepts_nested_attributes_for :main_medium
 
-  has_many :inbound_webmentions, -> { inbound }, class_name: 'Webmention', foreign_key: :post_id
-  has_many :outbound_webmentions, -> { outbound }, class_name: 'Webmention', foreign_key: :post_id
-
   scope :published, -> { where(draft: false, deleted: false) }
-
-  after_save :queue_webmentions_job, if: -> { saved_changes[:rendered_body] || saved_changes[:deleted] || saved_changes[:draft] }
-  after_save :queue_scrapers_ping, if: -> { !draft? && !deleted? }
 
   def title
     I18n.locale == :it ? title_it : super
@@ -102,55 +96,7 @@ class Post < ApplicationRecord
     !draft? && !deleted?
   end
 
-  def queue_webmentions_job
-    DeliverWebmentionsJob.perform_later(self) unless draft?
-  end
-
-  def queue_scrapers_ping
-    PingCrawlersJob.perform_later
-  end
-
-  def deliver_webmentions
-    client = WebmentionClient.new
-    source = Rails.application.routes.url_helpers.post_url(self)
-
-    targets = Webmention.where(source: source, outbound: true).pluck(:target) | [reply_to] | external_links
-    targets.compact.each do |link|
-      response = begin
-                   client.deliver(source, link)
-                 rescue
-                   nil
-                 end
-
-      track_webmention(source, link, response)
-    end
-  end
-
-  def track_webmention(source, link, response)
-    webmention = Webmention.find_or_initialize_by(source: source, target: link, outbound: true)
-    webmention.post = self
-    response_code = response&.code&.to_i
-
-    if !response || !response_code.in?(200..202)
-      webmention.status = :unsupported
-    else
-      webmention.status = response_code == 200 ? :accepted : :created
-      webmention.status_endpoint = response['location'] if response_code == 201
-    end
-
-    webmention.save
-  end
-
-  def external_links
-    document = Nokogiri::HTML(rendered_body)
-    nodes = document.css('a[href], img[src], video[src]')
-
-    links = nodes.map { |node| node[:href].strip.presence || node[:src].strip.presence }
-
-    filter_links(links)
-  end
-
-  def filter_links(links)
-    links.compact.reject { |link| link !~ %r{\Ahttps?://} || link =~ %r{\Ahttps?://francescoboffa.com} }
+  def url
+    Rails.application.routes.url_helpers.post_url(nil, self)
   end
 end
