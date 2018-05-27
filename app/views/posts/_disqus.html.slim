@@ -1,20 +1,15 @@
 #disqus_thread
 javascript:
-  var disqus_config = function() {
-    this.page.url = "#{polymorphic_url(post)}"
-    this.page.identifier = "#{post.id}"
-  }
-
   (function() {
     var c = document.getElementById('disqus_thread'), loaded = false
 
     function loadDisqus() {
-      var d = document, s = d.createElement('script')
-      s.src = 'https://francesco-boffa.disqus.com/embed.js'
-      s.setAttribute('data-timestamp', +new Date())
-      s.async = true
-      (d.head || d.body).appendChild(s)
-      loaded = true
+      var d = document, s = d.createElement('script');
+      s.src = 'https://francesco-boffa.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      s.async = true;
+      (d.head || d.body).appendChild(s);
+      loaded = true;
     }
 
     // Get the offset of an object
