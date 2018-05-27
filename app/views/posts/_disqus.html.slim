@@ -1,13 +1,38 @@
 #disqus_thread
 javascript:
-  var disqus_config = function () {
-    this.page.url = "#{polymorphic_url(post)}";
-    this.page.identifier = "#{post.id}";
-  };
+  var disqus_config = function() {
+    this.page.url = "#{polymorphic_url(post)}"
+    this.page.identifier = "#{post.id}"
+  }
+
   (function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://francesco-boffa.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-                              
+    var c = document.getElementById('disqus_thread'), loaded = false
+
+    function loadDisqus() {
+      var d = document, s = d.createElement('script')
+      s.src = 'https://francesco-boffa.disqus.com/embed.js'
+      s.setAttribute('data-timestamp', +new Date())
+      s.async = true
+      (d.head || d.body).appendChild(s)
+      loaded = true
+    }
+
+    // Get the offset of an object
+    function findTop(obj) {
+      var curtop = 0
+      if (obj.offsetParent) {
+        do { curtop += obj.offsetTop } while (obj = obj.offsetParent)
+        return curtop
+      }
+    }
+
+    if (location.hash === '#disqus_thread') {
+      loadDisqus()
+    } else {
+      var off = findTop(c)
+      window.onscroll = function() {
+        if (!loaded && window.pageYOffset > off - 100)
+          loadDisqus()
+      }
+    }
+  })()
