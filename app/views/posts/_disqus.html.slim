@@ -1,7 +1,7 @@
 #disqus_thread
 javascript:
   (function() {
-    var c = document.getElementById('disqus_thread'), loaded = false
+    var loaded = false
 
     function loadDisqus() {
       var d = document, s = d.createElement('script');
@@ -12,22 +12,11 @@ javascript:
       loaded = true;
     }
 
-    // Get the offset of an object
-    function findTop(obj) {
-      var curtop = 0
-      if (obj.offsetParent) {
-        do { curtop += obj.offsetTop } while (obj = obj.offsetParent)
-        return curtop
-      }
+    window.onscroll = function() {
+      if (!loaded && window.pageYOffset > document.body.offsetHeight / 3)
+        loadDisqus()
     }
 
-    if (location.hash === '#disqus_thread') {
+    if (location.hash === '#disqus_thread')
       loadDisqus()
-    } else {
-      var off = findTop(c)
-      window.onscroll = function() {
-        if (!loaded && window.pageYOffset > off - 100)
-          loadDisqus()
-      }
-    }
   })()
