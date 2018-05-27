@@ -1,5 +1,5 @@
 blockquote {
-  border-left: 7px solid #ff9800;
+  border-left: 4px solid #ff9800;
   margin: 0;
   padding: 4px 24px;
   box-shadow: 2px 3px 5px rgba(black, .13);
@@ -38,7 +38,6 @@ article.h-entry {
 
   h2 {
     color: #ff6e40;
-    text-align: center;
   }
 
   p, h2, h3 {
@@ -67,7 +66,7 @@ article.h-entry {
   pre.highlight {
     padding: 8px 24px;
     box-shadow: 2px 3px 5px rgba(0,0,0,.13);
-    border-left: 7px solid #2e7d32;
+    border-left: 4px solid #2e7d32;
     overflow-x: auto;
   }
 
