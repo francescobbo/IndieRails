@@ -1,21 +1,21 @@
 .share-buttons
   .share-button.share-button--twitter
-    = link_to "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{post.title}&original_referer=#{request.original_url}&via=frboffa", data: { 'ga-social': 'Twitter/share' }, target: '_blank', title: 'Share on Twitter'
+    = link_to "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{post.title}&original_referer=#{request.original_url}&via=frboffa", data: { 'ga-social': 'Twitter/share' }, target: '_blank', title: 'Share on Twitter', rel: 'noopener'
       i.fa.fa-fw.fa-twitter
       .share-button__name Twitter
 
   .share-button.share-button--linkedin
-    = link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{request.original_url}", data: { 'ga-social': 'LinkedIn/share' }, target: '_blank', title: 'Share on LinkedIn'
+    = link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{request.original_url}", data: { 'ga-social': 'LinkedIn/share' }, target: '_blank', title: 'Share on LinkedIn', rel: 'noopener'
       i.fa.fa-fw.fa-linkedin
       .share-button__name LinkedIn
 
   .share-button.share-button--hn
-    = link_to "https://news.ycombinator.com/submitlink?u=#{request.original_url}&t=#{post.title}", data: { 'ga-social': 'HackerNews/vote' }, target: '_blank', title: 'Vote on HackerNews'
+    = link_to "https://news.ycombinator.com/submitlink?u=#{request.original_url}&t=#{post.title}", data: { 'ga-social': 'HackerNews/vote' }, target: '_blank', title: 'Vote on HackerNews', rel: 'noopener'
       i.fa.fa-fw.fa-hacker-news
       .share-button__name Hacker News
 
   .share-button.share-button--facebook
-    = link_to "https://www.facebook.com/sharer.php?u=#{request.original_url}", data: { 'ga-social': 'Facebook/share' }, target: '_blank', title: 'Share on Facebook'
+    = link_to "https://www.facebook.com/sharer.php?u=#{request.original_url}", data: { 'ga-social': 'Facebook/share' }, target: '_blank', title: 'Share on Facebook', rel: 'noopener'
       i.fa.fa-fw.fa-facebook-square
       .share-button__name Facebook
 
