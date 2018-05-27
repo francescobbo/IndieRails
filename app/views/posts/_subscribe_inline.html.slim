@@ -7,9 +7,9 @@
 
     = form_with url: subscribe_path, class: 'inline-subscribe' do |f|
       .inline-subscribe__row
-        = f.label :name, 'Your first name', style: 'display: none'
+        = f.label :name, 'Your first name', style: 'position:absolute;left:-1000000px;opacity:0.01'
         = f.text_field :name, required: true, placeholder: 'Your First Name'
-        = f.label :email, 'Your email address', style: 'display: none'
+        = f.label :email, 'Your email address', style: 'position:absolute;left:-1000000px;opacity:0.01'
         = f.email_field :email, required: true, placeholder: 'Your Email Address'
       = f.submit 'Sign Up*', class: 'inline-subscribe__submit'
 
