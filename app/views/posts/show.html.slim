@@ -22,11 +22,11 @@ article.h-entry
       =< link_to post.reply_to, post.reply_to, class: 'u-in-reply-to'
 
   - else
-    - if post.main_medium.present?
-      = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
-
     - if post.title
       h1.p-name = post.title
+
+    - if post.main_medium.present?
+      = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
 
     .article__heading
       = link_to url_for(post), class: 'u-url'
