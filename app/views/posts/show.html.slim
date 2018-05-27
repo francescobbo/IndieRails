@@ -25,9 +25,6 @@ article.h-entry
     - if post.title
       h1.p-name = post.title
 
-    - if post.main_medium.present?
-      = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
-
     .article__heading
       = link_to url_for(post), class: 'u-url'
         time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at.to_date, format: :long)
@@ -46,3 +43,6 @@ article.h-entry
               = image_tag like.author_image, alt: like.author_name, title: like.author_name, class: 'facepile__image'
 
   = render 'disqus', post: post
+
+  - if post.main_medium.present?
+    = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
