@@ -30,7 +30,8 @@ gem 'meta-tags'
 gem 'rouge'
 gem 'paperclip'
 gem 'paperclip-optimizer'
-gem 'aws-sdk', '~> 2.9'
+gem 'aws-sdk'
+gem 'aws-sdk-s3'
 gem 'whenever', require: false
 
 gem 'webpacker', '~> 2.0'
