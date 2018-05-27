@@ -21,8 +21,11 @@ article.h-entry.post--preview
         == post.rendered_body
 
       = link_to url_for(post), class: 'u-url'
-        | Published on
-        time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at, format: :long)
+        - if post.updated_at != post.published_at
+          | Last update:
+        - else
+          | Published on
+        time.dt-updated< datetime=post.updated_at.iso8601 =< l(post.updated_at, format: :long)
     - elsif post.article?
       - if post.main_medium.present?
         = link_to post
@@ -31,11 +34,11 @@ article.h-entry.post--preview
       h1.p-name
         = link_to post
           = post.title
-      
+
       .article__heading
         = link_to url_for(post), class: 'u-url'
-          time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at.to_date, format: :long)
-      
+          time.dt-updated datetime=post.updated_at.iso8601 =< l(post.updated_at.to_date, format: :long)
+
       .e-content class="#{'p-name' unless post.title}"
         == post.preview
         div

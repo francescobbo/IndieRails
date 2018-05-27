@@ -27,7 +27,9 @@ article.h-entry
 
     .article__heading
       = link_to url_for(post), class: 'u-url'
-        time.dt-published datetime=post.published_at.iso8601 =< l(post.published_at.to_date, format: :long)
+        - if post.updated_at != post.published_at
+          | Last update:
+        time.dt-updated< datetime=post.updated_at.iso8601 =< l(post.updated_at.to_date, format: :long)
 
     .e-content class="#{'p-name' unless post.title}" == embed_signup(post.rendered_body)
 
