@@ -15,7 +15,7 @@ blockquote {
   &::before {
     content: '\f129';
     position: absolute;
-    background: #ff6e40;
+    background-color: $orange;
     height: 100%;
     width: 48px;
     left: 0px;
@@ -63,7 +63,7 @@ article.h-entry {
   }
 
   h2 {
-    color: #ff6e40;
+    color: $orange;
   }
 
   p, h2, h3 {

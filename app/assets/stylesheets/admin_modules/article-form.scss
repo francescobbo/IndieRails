@@ -2,12 +2,11 @@
   border: none;
   border-bottom: 2px solid #ccc;
   font-size: 2em;
-  font-family: 'Roboto Slab';
   padding: 8px 0;
   font-weight: bold;
-  color: #ff6e40;
+  color: $orange;
 
   &:focus {
-    border-bottom-color: #ff6e40;
+    border-bottom-color: $orange;
   }
 }
