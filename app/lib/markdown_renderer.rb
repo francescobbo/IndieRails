@@ -10,7 +10,7 @@ class MarkdownRenderer < Redcarpet::Render::HTML
     if title =~ /\A[a-f0-9-]{36}\z/i
       image = Medium.where(id: title).first
       if image
-        image_tag(image.file.url(:large), alt: image.default_alt, class: alt_text)
+        image_tag(image.file.url(:post), alt: image.default_alt, class: alt_text)
       else
         ""
       end
