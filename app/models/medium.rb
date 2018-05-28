@@ -3,7 +3,10 @@ class Medium < ApplicationRecord
                     styles: {
                       thumb: '300x300>',
                       post: '750x>',
-                      large: '1200x1200>'
+                      large: '1200x1200>',
+                      thumb_webp: ['300x300>', :webp],
+                      post_webp: ['750x>', :webp],
+                      large_webp: ['1200x1200>', :webp]
                     },
                     convert_options: {
                       thumb: '-quality 75 -strip'
