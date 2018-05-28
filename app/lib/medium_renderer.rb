@@ -5,7 +5,12 @@ class MediumRenderer
     def render(medium, img_attributes = {})
       webp_source = tag.source(type: 'image/webp', srcset: srcset(medium, format: :webp), sizes: sizes)
       default_source = tag.source(srcset: srcset(medium), sizes: sizes)
-      fallback_image = image_tag(medium.file.url(:post), { alt: medium.default_alt }.merge(img_attributes))
+
+      fallback_image = image_tag(medium.file.url(:post), {
+        alt: medium.default_alt,
+        srcset: srcset(medium),
+        sizes: sizes
+      }.merge(img_attributes))
 
       tag.picture(webp_source + default_source + fallback_image)
     end
