@@ -47,4 +47,4 @@ article.h-entry
   = render 'disqus', post: post
 
   - if post.main_medium.present?
-    = image_tag post.main_medium.file.url(:large), alt: post.main_medium.default_alt, class: 'u-photo article__cover'
+    = MediumRenderer.render(post.main_medium, class: 'u-photo article__cover')
