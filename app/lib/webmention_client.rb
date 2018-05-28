@@ -27,7 +27,7 @@ class WebmentionClient
   def perform(webmention_uri, source, target)
     request = Net::HTTP::Post.new(webmention_uri.request_uri, 'User-Agent' => user_agent)
     request.set_form_data(source: source, target: target)
-    response = client(uri).request(request)
+    client(uri).request(request)
 
   rescue StandardError
     # Network error?
