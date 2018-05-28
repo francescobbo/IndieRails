@@ -23,7 +23,7 @@ class WebmentionManager
   end
 
   def targets
-    (existing_targets | external_links | [@post.reply_to]).compact
+    (existing_targets | external_links | [@post.reply_to]).uniq.compact
   end
 
   def existing_targets
