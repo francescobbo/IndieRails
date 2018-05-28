@@ -22,7 +22,7 @@ class MediumRenderer
     end
 
     def sizes
-      '(min-width: 782px) 750w, 100vw'
+      '(min-width: 782px) 750px, 100vw'
     end
   end
 end
