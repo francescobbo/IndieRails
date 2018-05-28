@@ -5,7 +5,7 @@ class LinkScraper
       nodes = document.css('a[href], img[src], video[src]')
 
       uris = nodes.map do |node|
-        node[:href].strip.presence || node[:src].strip.presence
+        node[:href]&.strip&.presence || node[:src]&.strip&.presence
       end
 
       remove_self(keep_web uris.compact)
